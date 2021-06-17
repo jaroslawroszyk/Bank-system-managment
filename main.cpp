@@ -6,11 +6,7 @@
 
 int main()
 {
-    std::cout << "Login menu! \n";
+    
     menuLogin();
     menu();
-    
-    
-
-
 }
