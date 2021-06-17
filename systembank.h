@@ -1,6 +1,6 @@
-#ifndef SYSTEMBANK_H_
-#define SYSTEMBANK_H_
+#pragma once
 #include <iostream>
+
 enum class SystemBank
 {
     s_newaccount=1,
@@ -17,5 +17,3 @@ enum class SystemBank
 std::istream &operator>>(std::istream &in, SystemBank &enter);
 // std::istream &operator>>(std::istream &in, SystemBank &menu);
 void menu();
-
-#endif

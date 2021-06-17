@@ -1,5 +1,4 @@
-#ifndef FUNCTIONTOBANK_H_
-#define FUNCTIONTOBANK_H_
+#pragma once
 #include<iostream>
 #include<fstream>
 #include<cctype>
@@ -14,5 +13,3 @@ void displayAllAccount();
 void depositOrWithdraw(int n, int op);
 void enterAccNo();
 void cleaningScreen();
-
-#endif

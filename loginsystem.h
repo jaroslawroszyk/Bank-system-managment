@@ -1,5 +1,4 @@
-#ifndef LOGINSYSTEM_H_
-#define LOGINSYSTEM_H_
+#pragma once
 #include <iostream>
 #include <fstream>
 
@@ -15,5 +14,3 @@ std::istream &operator>>(std::istream &in, LoginSystem &entry);
 bool rgstr();
 bool login();
 void menuLogin();
-
-#endif

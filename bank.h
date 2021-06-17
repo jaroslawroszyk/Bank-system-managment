@@ -1,5 +1,4 @@
-#ifndef BANK_H_
-#define BANK_H_
+#pragma once
 #include<iostream>
 #include<fstream>
 #include<cctype>
@@ -27,5 +26,3 @@ public:
     int returndeposit() const;
     char returntype() const;
 };
-
-#endif
