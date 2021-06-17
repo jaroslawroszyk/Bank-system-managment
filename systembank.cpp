@@ -1,7 +1,7 @@
 #include "systembank.h"
 #include "bank.h"
 #include "functiontobank.h"
-//TODO: napraw bo program sie zamyka samemu..
+
 std::istream &operator>>(std::istream &in, SystemBank &enter)
 {
     int int_entry;
