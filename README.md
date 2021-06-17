@@ -4,16 +4,22 @@ As I develop my skills, I will want to put this application graphically together
 In the future, I would like to link it to the database and create TDD
 
 ## Build
-Build requires cmake 3.19+
+<!-- Build requires cmake 3.19+
 ```
 mkdir build
 cd build
 cmake ..
-make
+make 
 ```
 
 ## Execute
 ```
 cd /bin
 ./bankingsys
+```
+-->
+
+## Exectue
+```
+./run.sh
 ```
