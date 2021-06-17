@@ -1,5 +1,4 @@
 #include "loginsystem.h"
-//TODO:NAPRAW SYSTEM LOGOWANIA
 
 bool regstr()
 {
@@ -77,9 +76,7 @@ void menuLogin()
             if (!stat)
             {
                 std::cout << "False login!" << std::endl;
-                // return 0;
                 break;
-                // exit();
             }
             else
             {
