@@ -2,10 +2,10 @@
 #include "bank.h"
 #include "functiontobank.h"
 //TODO: napraw bo program sie zamyka samemu..
-std::istream &operator>>(std::istream &in, SystemBank &entry)
+std::istream &operator>>(std::istream &in, SystemBank &enter)
 {
     int int_entry;
-    entry = (in >> int_entry) ? static_cast<SystemBank>(int_entry) : SystemBank::nope;
+    enter = (in >> int_entry) ? static_cast<SystemBank>(int_entry) : SystemBank::s_exit;
     return in;
 }
 
@@ -92,12 +92,13 @@ void menu()
         case SystemBank::s_exit:
         {
             std::cout << "Bye bye " << std::endl;
+            
             break;
         }
-        default:
-        {
-            std::cout << "Ops! No way!" << std::endl;
+        // default:
+        // {
+        //     std::cout << "Ops! No way!" << std::endl;
+        // }
         }
-        }
-    } while (enter == SystemBank::nope);
+    } while (enter != SystemBank::s_exit);
 }
