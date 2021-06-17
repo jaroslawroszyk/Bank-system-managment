@@ -55,12 +55,12 @@ void account::create_acc()
         std::cin >> m_type;
     }
 
-    std::cout << "enter the amount of the first payment(not less than 500) " << std::endl;
+    std::cout << "enter the amount of the first payment(not less than 500) \n";
     std::cin >> m_deposit;
 
     while (m_deposit < 500)
     {
-        std::cout << "Less than 500!" << std::endl;
+        std::cout << "Less than 500!\n";
         std::cout << "Enter again: ";
         std::cin >> m_deposit;
     }
@@ -68,18 +68,18 @@ void account::create_acc()
 
 void account::showacc() const
 {
-    std::cout << std::endl;
-    std::cout << "Account number: " << m_accnumber << std::endl;
-    std::cout << "Account holder surname: " << m_surname << std::endl;
-    std::cout << "Account holder name: " << m_name << std::endl;
-    std::cout << "Type of Account: " << m_type << std::endl;
-    std::cout << "Available balance: " << m_deposit << std::endl;
+    std::cout << "\n";
+    std::cout << "Account number: " << m_accnumber << "\n";
+    std::cout << "Account holder surname: " << m_surname << "\n";
+    std::cout << "Account holder name: " << m_name << "\n";
+    std::cout << "Type of Account: " << m_type << "\n";
+    std::cout << "Available balance: " << m_deposit << "\n";
 }
 
 void account::modify()
 {
-    std::cout << "!Modify!" << std::endl;
-    std::cout << "Account number: " << m_accnumber << std::endl;
+    std::cout << "!Modify!\n";
+    std::cout << "Account number: " << m_accnumber << "\n";
     std::cout << "Modify surname of the account holder: ";
     std::cin.ignore();
     // std::cin.getline(m_surname, 50);
