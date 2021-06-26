@@ -19,7 +19,7 @@ cd /bin
 ```
 -->
 
-## Exectue
+## Execute
 ```
 ./run.sh
 ```
