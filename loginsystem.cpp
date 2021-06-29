@@ -10,6 +10,7 @@ bool regstr()
 
     std::ofstream regist(WORKERSFILE, std::ios::app);
     regist << login << ' ' << password << std::endl;
+    // regist << "Login: " << login << " ,Password: " <<  password << std::endl;
     regist.close();
     return true;
 }
@@ -31,7 +32,7 @@ bool login()
             std::cout << "login succes!";
         }
     }
-    inp.close();
+   
     if (c == 1)
     {
         std::cout << "Login succes! " << std::endl;
@@ -42,7 +43,10 @@ bool login()
         std::cout << "NOPE!";
         return false;
     }
-    return false;
+    inp.close();
+    return true;
+
+    
 }
 
 std::istream &operator>>(std::istream &in, LoginSystem &entry)
@@ -70,17 +74,19 @@ void menuLogin()
         }
         case LoginSystem::logi:
         {
+            system("clear");
             std::cout << "logi\n";
 
             bool stat = login();
             if (!stat)
             {
                 std::cout << "False login!" << std::endl;
-                break;
+                menuLogin();
             }
             else
             {
                 std::cout << "Succesfully logged in!" << std::endl;
+                system("clear");
             }
             break;
         }
