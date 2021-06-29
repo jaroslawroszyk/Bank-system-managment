@@ -14,6 +14,6 @@ make
 
 ## Execute
 ```
-cd /bin
+cd /src
 ./BankSystem
 ```
