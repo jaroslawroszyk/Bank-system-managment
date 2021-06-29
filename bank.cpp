@@ -97,14 +97,14 @@ void account::modify()
     std::cin >> m_deposit;
 }
 
-void account::deposit(int depo)
+void account::deposit(int deposit)
 {
-    m_deposit += depo;
+    m_deposit += deposit;
 }
 
-void account::withdraw(int depo)
+void account::withdraw(int deposit)
 {
-    m_deposit -= depo;
+    m_deposit -= deposit;
 }
 
 void account::report() const

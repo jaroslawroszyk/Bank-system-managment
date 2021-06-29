@@ -6,10 +6,10 @@
 #include <algorithm>
 
 void writeAccount();
-void displayDetails(int n);
-void modifyAccount(int n);
-void deleteAccount(int n);
+void displayDetails(int numberAccount);
+void modifyAccount(int numberAccount);
+void deleteAccount(int numberAccount);
 void displayAllAccount();
-void depositOrWithdraw(int n, int op);
+void depositOrWithdraw(int numberAccount, int option);
 void enterAccNo();
 void cleaningScreen();

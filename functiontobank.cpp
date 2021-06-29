@@ -12,7 +12,7 @@ void writeAccount() //in file! save data on file .dat
     file.close();
 }
 
-void displayDetails(int n) //displaying details by account number (FILE)
+void displayDetails(int numberAccount) //displaying details by account number (FILE)
 {
 
     account aco;
@@ -29,7 +29,7 @@ void displayDetails(int n) //displaying details by account number (FILE)
 
     while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
     {
-        if (aco.returnacnumber() == n)
+        if (aco.returnacnumber() == numberAccount)
         {
             aco.showacc();
             well = true;
@@ -43,7 +43,7 @@ void displayDetails(int n) //displaying details by account number (FILE)
     }
 }
 
-void modifyAccount(int n) //modify account by account number (FILE)
+void modifyAccount(int numberAccount) //modify account by account number (FILE)
 {
     bool found = false;
     account aco;
@@ -57,7 +57,7 @@ void modifyAccount(int n) //modify account by account number (FILE)
     while (!File.eof() && found == false)
     {
         File.read(reinterpret_cast<char *>(&aco), sizeof(account));
-        if (aco.returnacnumber() == n)
+        if (aco.returnacnumber() == numberAccount)
         {
             aco.showacc();
             std::cout << "MODIFY OLD DETAILS: " << std::endl;
@@ -76,7 +76,7 @@ void modifyAccount(int n) //modify account by account number (FILE)
     }
 }
 
-void deleteAccount(int n) //delete account by account number(FILE)
+void deleteAccount(int numberAccount) //delete account by account number(FILE)
 {
     account aco;
     std::ifstream inFile;
@@ -91,7 +91,7 @@ void deleteAccount(int n) //delete account by account number(FILE)
     inFile.seekg(0, std::ios::beg);
     while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
     {
-        if (aco.returnacnumber() != n)
+        if (aco.returnacnumber() != numberAccount)
         {
             outFile.write(reinterpret_cast<char *>(&aco), sizeof(account));
         }
@@ -123,7 +123,7 @@ void displayAllAccount() //displaying all acount from file
     inFile.close();
 }
 
-void depositOrWithdraw(int n, int op)
+void depositOrWithdraw(int numberAccount, int option)
 {
     account aco;
     bool found = false;
@@ -138,16 +138,16 @@ void depositOrWithdraw(int n, int op)
     while (!File.eof() && found == false)
     {
         File.read(reinterpret_cast<char *>(&aco), sizeof(account));
-        if (aco.returnacnumber() == n)
+        if (aco.returnacnumber() == numberAccount)
         {
             aco.showacc();
-            if (op == 1)
+            if (option == 1)
             {
                 std::cout << "Deposit, enter the ammount: ";
                 std::cin >> ammount;
                 aco.deposit(ammount);
             }
-            if (op == 2)
+            if (option == 2)
             {
                 std::cout << "Whitdraw, enter the ammount: ";
                 std::cin >> ammount;

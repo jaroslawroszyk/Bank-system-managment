@@ -19,8 +19,8 @@ public:
     void create_acc();
     void showacc() const;
     void modify();
-    void deposit(int depo);
-    void withdraw(int depo);
+    void deposit(int deposit);
+    void withdraw(int deposit);
     void report() const; 
     int returnacnumber() const;
     int returndeposit() const;
