@@ -104,7 +104,7 @@ void deleteAccount(int numberAccount) //delete account by account number(FILE)
     std::cout << "Deleted!" << std::endl;
 }
 
-inline void displayAllAccount() //displaying all acount from file
+void displayAllAccount() //displaying all acount from file
 {
     account aco;
     std::ifstream inFile;
