@@ -9,7 +9,7 @@ void writeAccount();
 void displayDetails(int numberAccount);
 void modifyAccount(int numberAccount);
 void deleteAccount(int numberAccount);
-void displayAllAccount();
+inline void displayAllAccount();
 void depositOrWithdraw(int numberAccount, int option);
 void enterAccNo();
 void cleaningScreen();
