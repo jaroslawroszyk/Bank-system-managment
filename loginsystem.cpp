@@ -1,5 +1,5 @@
 #include "loginsystem.h"
-
+#define WORKERSFILE "workers.txt"
 bool regstr()
 {
     std::string login, password, l, p;
@@ -8,7 +8,7 @@ bool regstr()
     std::cout << "Enter Password: ";
     std::cin >> password;
 
-    std::ofstream regist("workers.txt", std::ios::app);
+    std::ofstream regist(WORKERSFILE, std::ios::app);
     regist << login << ' ' << password << std::endl;
     regist.close();
     return true;
@@ -22,7 +22,7 @@ bool login()
     std::cin >> login;
     std::cout << "Enter password: ";
     std::cin >> password;
-    std::ifstream inp("workers.txt");
+    std::ifstream inp(WORKERSFILE);
     while (inp >> l >> p)
     {
         if (l == login && p == password)

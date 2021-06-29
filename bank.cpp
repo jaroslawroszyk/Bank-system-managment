@@ -1,4 +1,5 @@
 #include "bank.h"
+#define FNAME "data.dat"
 
 bool isNumber(const std::string &s)
 {
@@ -18,7 +19,7 @@ bool isNumber(const std::string &s)
 void account::create_acc()
 {
     std::ifstream checkid;
-    checkid.open("data.dat",std::ios::binary | std::ios::app);
+    checkid.open(FNAME, std::ios::binary | std::ios::app);
     std::cout << "Enter account number: ";
     std::cin >> m_accnumber;
 

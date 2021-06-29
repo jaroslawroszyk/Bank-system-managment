@@ -1,11 +1,12 @@
 #include "functiontobank.h"
 #include "bank.h"
+#define FNAME "data.dat"
 
 void writeAccount() //in file! save data on file .dat
 {
     account aco;
     std::ofstream file;
-    file.open("data.dat", std::ios::binary | std::ios::app);
+    file.open(FNAME, std::ios::binary | std::ios::app);
     aco.create_acc();
     file.write(reinterpret_cast<char *>(&aco), sizeof(account));
     file.close();
@@ -17,7 +18,7 @@ void displayDetails(int n) //displaying details by account number (FILE)
     account aco;
     bool well = false;
     std::ifstream inFile;
-    inFile.open("data.dat", std::ios::binary);
+    inFile.open(FNAME, std::ios::binary);
     if (!inFile)
     {
         std::cout << "File couldn't be open!!";
@@ -47,7 +48,7 @@ void modifyAccount(int n) //modify account by account number (FILE)
     bool found = false;
     account aco;
     std::fstream File;
-    File.open("data.dat", std::ios::binary | std::ios::in | std::ios::out);
+    File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
     {
         std::cout << "File couldn't be open!!";
@@ -80,7 +81,7 @@ void deleteAccount(int n) //delete account by account number(FILE)
     account aco;
     std::ifstream inFile;
     std::ofstream outFile;
-    inFile.open("data.dat", std::ios::binary);
+    inFile.open(FNAME, std::ios::binary);
     if (!inFile)
     {
         std::cout << "File couldn't be open!!";
@@ -98,8 +99,8 @@ void deleteAccount(int n) //delete account by account number(FILE)
     inFile.close();
     outFile.close();
 
-    std::remove("data.dat");
-    std::rename("Temp.dat", "data.dat");
+    std::remove(FNAME);
+    std::rename("Temp.dat", FNAME);
     std::cout << "Deleted!" << std::endl;
 }
 
@@ -107,7 +108,7 @@ void displayAllAccount() //displaying all acount from file
 {
     account aco;
     std::ifstream inFile;
-    inFile.open("data.dat", std::ios::binary);
+    inFile.open(FNAME, std::ios::binary);
     if (!inFile)
     {
         std::cout << "File couldn't be open!!";
@@ -128,7 +129,7 @@ void depositOrWithdraw(int n, int op)
     bool found = false;
     int ammount;
     std::fstream File;
-    File.open("data.dat", std::ios::binary | std::ios::in | std::ios::out);
+    File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
     {
         std::cout << "File couldn't be open!!";
