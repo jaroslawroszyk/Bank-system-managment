@@ -11,6 +11,6 @@ enum class LoginSystem
 
 std::istream &operator>>(std::istream &in, LoginSystem &entry);
 
-bool rgstr();
+bool regstr();
 bool login();
 void menuLogin();
