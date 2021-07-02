@@ -1,8 +1,46 @@
-cmake_minimum_required(VERSION 3.10)
-project(BankSystem)
+cmake_minimum_required(VERSION 3.17)
 
-set(CMAKE_CXX_STANDARD 14)
+project(BankSystem VERSION 1.0.0)
+set(CMAKE_CXX_STANDARD 17)
 
-include_directories(src)
+if(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE MATCHES "Release")
+    set(CMAKE_BUILD_TYPE Release)
+elseif(CMAKE_BUILD_TYPE MATCHES "Debug")
+    set(CMAKE_BUILD_TYPE Debug)
+else()
+    message(FATAL_ERROR "Available build types: Debug and Release.")
+endif()
 
-add_subdirectory(src)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+add_executable(change_currencies_cli
+    src/main.cpp
+    src/bank.cpp
+    src/functiontobank.cpp
+    src/loginsystem.cpp
+    src/systembank.cpp
+)
+
+set_target_properties(change_currencies_cli
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    if(MSVC)
+        #ToDo: add flags for msfc
+    else()
+        target_compile_options(change_currencies_cli
+                PUBLIC
+                -O3 -g3 -Wall -Wextra -pedantic
+            )
+    endif()
+else()
+    if(MSVC)
+        #ToDo: add flags for msfc
+    else()
+        target_compile_options(change_currencies_cli
+                PUBLIC
+                -O3 -Wall -Wextra -pedantic
+            )
+    endif()
+endif()

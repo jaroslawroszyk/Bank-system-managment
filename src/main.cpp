@@ -1,12 +1,11 @@
+#include "../include/bank.h"
+#include "../include/functiontobank.h"
+#include "../include/loginsystem.h"
+#include "../include/systembank.h"
 #include <iostream>
-#include "loginsystem.h"
-#include "bank.h"
-#include "functiontobank.h"
-#include "systembank.h"
 
 int main()
 {
-    
     menuLogin();
     menu();
 }

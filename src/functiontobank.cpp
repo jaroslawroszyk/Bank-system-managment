@@ -1,5 +1,5 @@
-#include "functiontobank.h"
-#include "bank.h"
+#include "../include/functiontobank.h"
+#include "../include/bank.h"
 #define FNAME "data.dat"
 
 void writeAccount() //in file! save data on file .dat
