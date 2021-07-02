@@ -28,13 +28,13 @@ bool login()
         if (l == login && p == password)
         {
             c = 1;
-            std::cout << "login succes!";
+            std::cout << "login success!";
         }
     }
 
     if (c == 1)
     {
-        std::cout << "Login succes! " << std::endl;
+        std::cout << "Login success! " << std::endl;
         return true;
     }
     else
@@ -81,7 +81,7 @@ void menuLogin()
             }
             else
             {
-                std::cout << "Succesfully logged in!" << std::endl;
+                std::cout << "successful logged in!" << std::endl;
                 system("clear");
             }
             break;

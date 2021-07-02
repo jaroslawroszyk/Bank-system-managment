@@ -104,7 +104,7 @@ void deleteAccount(int numberAccount)
     std::cout << "Deleted!" << std::endl;
 }
 
-void displayAllAccount() 
+void displayAllAccount()
 {
     account aco;
     std::ifstream inFile;
@@ -127,7 +127,7 @@ void depositOrWithdraw(int numberAccount, int option)
 {
     account aco;
     bool found = false;
-    int ammount;
+    int amount;
     std::fstream File;
     File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
@@ -143,28 +143,28 @@ void depositOrWithdraw(int numberAccount, int option)
             aco.showacc();
             if (option == 1)
             {
-                std::cout << "Deposit, enter the ammount: ";
-                std::cin >> ammount;
-                aco.deposit(ammount);
+                std::cout << "Deposit, enter the amount: ";
+                std::cin >> amount;
+                aco.deposit(amount);
             }
             if (option == 2)
             {
-                std::cout << "Whitdraw, enter the ammount: ";
-                std::cin >> ammount;
-                int balance = aco.returndeposit() - ammount;
+                std::cout << "Whitdraw, enter the amount: ";
+                std::cin >> amount;
+                int balance = aco.returndeposit() - amount;
                 if ((balance < 500 && aco.returntype() == 'S') || (balance < 1000 && aco.returntype() == 'P'))
                 {
-                    std::cout << "Insufficience balance";
+                    std::cout << "Insufficiency balance";
                 }
                 else
                 {
-                    aco.withdraw(ammount);
+                    aco.withdraw(amount);
                 }
             }
             int pos = (-1) * static_cast<int>(sizeof(aco));
             File.seekp(pos, std::ios::cur);
             File.write(reinterpret_cast<char *>(&aco), sizeof(account));
-            std::cout << "sucess" << std::endl;
+            std::cout << "successs" << std::endl;
             found = true;
         }
     }
