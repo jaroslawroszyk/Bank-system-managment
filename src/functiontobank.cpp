@@ -2,7 +2,7 @@
 #include "../include/bank.h"
 #define FNAME "data.dat"
 
-void writeAccount() //in file! save data on file .dat
+void writeAccount()
 {
     account aco;
     std::ofstream file;
@@ -12,7 +12,7 @@ void writeAccount() //in file! save data on file .dat
     file.close();
 }
 
-void displayDetails(int numberAccount) //displaying details by account number (FILE)
+void displayDetails(int numberAccount)
 {
 
     account aco;
@@ -43,7 +43,7 @@ void displayDetails(int numberAccount) //displaying details by account number (F
     }
 }
 
-void modifyAccount(int numberAccount) //modify account by account number (FILE)
+void modifyAccount(int numberAccount)
 {
     bool found = false;
     account aco;
@@ -76,7 +76,7 @@ void modifyAccount(int numberAccount) //modify account by account number (FILE)
     }
 }
 
-void deleteAccount(int numberAccount) //delete account by account number(FILE)
+void deleteAccount(int numberAccount)
 {
     account aco;
     std::ifstream inFile;
@@ -104,7 +104,7 @@ void deleteAccount(int numberAccount) //delete account by account number(FILE)
     std::cout << "Deleted!" << std::endl;
 }
 
-void displayAllAccount() //displaying all acount from file
+void displayAllAccount() 
 {
     account aco;
     std::ifstream inFile;

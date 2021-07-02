@@ -1,9 +1,9 @@
 #pragma once
-#include<iostream>
-#include<fstream>
-#include<cctype>
-#include<iomanip>
 #include <algorithm>
+#include <cctype>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
 
 void writeAccount();
 void displayDetails(int numberAccount);

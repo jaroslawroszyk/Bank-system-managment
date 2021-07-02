@@ -6,16 +6,6 @@ bool isNumber(const std::string &s)
   return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
 }
 
-//second version
-// bool isNumber(std::string s)
-// {
-//     for (int i = 0; i < s.length(); i++)
-//         if (isdigit(s[i]) == false)
-//             return false;
-
-//     return true;
-// }
-
 void account::create_acc()
 {
     std::ifstream checkid;
@@ -23,12 +13,9 @@ void account::create_acc()
     std::cout << "Enter account number: ";
     std::cin >> m_accnumber;
 
-    // m_accnumber++;
-
     std::cout << "Enter surname of the account holder: ";
     std::cin.ignore();
     std::cin.getline(m_surname, 50);
-    // std::cin >> m_surname;
 
     while (isNumber(m_surname))
     {
@@ -39,7 +26,6 @@ void account::create_acc()
     std::cout << "Enter name of the account holder: ";
     std::cin.ignore();
     std::cin.getline(m_name, 50);
-    // std::cin >> m_name;
     while (isNumber(m_name))
     {
         std::cout << "This is the number of re-enter  name: ";
@@ -83,11 +69,9 @@ void account::modify()
     std::cout << "Account number: " << m_accnumber << "\n";
     std::cout << "Modify surname of the account holder: ";
     std::cin.ignore();
-    // std::cin.getline(m_surname, 50);
     std::cin >> m_surname;
     std::cout << "Modify name of the account holder: ";
     std::cin.ignore();
-    // std::cin.getline(m_name, 50);
     std::cin >> m_name;
 
     std::cout << "Modify Type of Account: ";
