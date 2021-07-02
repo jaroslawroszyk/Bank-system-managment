@@ -15,13 +15,13 @@ void menu()
     SystemBank enter;
     do
     {
-        std::cout << "[1] New account" << std::endl;         //writeacc()
-        std::cout << "[2] Deposit amount" << std::endl;      //depositOrWithdraw()
-        std::cout << "[3] Withdraw amount" << std::endl;     //depositorWithdraw()
-        std::cout << "[4] Balance account" << std::endl;     // display details()
-        std::cout << "[5] Account holder list" << std::endl; //displayAllAccount()
-        std::cout << "[6] Close account" << std::endl;       //deleteAccount()
-        std::cout << "[7] Modify account" << std::endl;      //modifyAccount()
+        std::cout << "[1] New account" << std::endl;
+        std::cout << "[2] Deposit amount" << std::endl;
+        std::cout << "[3] Withdraw amount" << std::endl;
+        std::cout << "[4] Balance account" << std::endl;
+        std::cout << "[5] Account holder list" << std::endl;
+        std::cout << "[6] Close account" << std::endl;
+        std::cout << "[7] Modify account" << std::endl;
         std::cout << "[8] Exit" << std::endl;
         std::cout << "Select options 1-8: ";
         std::cin >> enter;
@@ -95,10 +95,6 @@ void menu()
 
             break;
         }
-            // default:
-            // {
-            //     std::cout << "Ops! No way!" << std::endl;
-            // }
         }
     } while (enter != SystemBank::s_exit);
 }

@@ -1,10 +1,9 @@
 #pragma once
-#include<iostream>
-#include<fstream>
-#include<cctype>
-#include<iomanip>
 #include <algorithm>
-
+#include <cctype>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
 
 class account
 {
@@ -21,7 +20,7 @@ public:
     void modify();
     void deposit(int deposit);
     void withdraw(int deposit);
-    void report() const; 
+    void report() const;
     int returnacnumber() const;
     int returndeposit() const;
     char returntype() const;

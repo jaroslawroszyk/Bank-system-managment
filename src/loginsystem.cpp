@@ -10,7 +10,6 @@ bool regstr()
 
     std::ofstream regist(WORKERSFILE, std::ios::app);
     regist << login << ' ' << password << std::endl;
-    // regist << "Login: " << login << " ,Password: " <<  password << std::endl;
     regist.close();
     return true;
 }
@@ -68,7 +67,6 @@ void menuLogin()
         {
             std::cout << "Regis\n";
             regstr();
-            // break;
         }
         case LoginSystem::logi:
         {
