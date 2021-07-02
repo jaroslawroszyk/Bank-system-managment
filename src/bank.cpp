@@ -1,4 +1,4 @@
-#include "bank.h"
+#include "../include/bank.h"
 #define FNAME "data.dat"
 
 bool isNumber(const std::string &s)

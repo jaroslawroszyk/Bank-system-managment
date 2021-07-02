@@ -1,4 +1,4 @@
-#include "loginsystem.h"
+#include "../include/loginsystem.h"
 #define WORKERSFILE "workers.txt"
 bool regstr()
 {
@@ -32,7 +32,7 @@ bool login()
             std::cout << "login succes!";
         }
     }
-   
+
     if (c == 1)
     {
         std::cout << "Login succes! " << std::endl;
@@ -45,8 +45,6 @@ bool login()
     }
     inp.close();
     return true;
-
-    
 }
 
 std::istream &operator>>(std::istream &in, LoginSystem &entry)
