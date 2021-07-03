@@ -182,5 +182,5 @@ void enterAccNo()
 
 void cleaningScreen()
 {
-    system("clear");
+    std::system("clear");
 }
