@@ -12,7 +12,7 @@ else()
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
-add_executable(change_currencies_cli
+add_executable(BankSystem
     src/main.cpp
     src/bank.cpp
     src/functiontobank.cpp
@@ -20,7 +20,7 @@ add_executable(change_currencies_cli
     src/systembank.cpp
 )
 
-set_target_properties(change_currencies_cli
+set_target_properties(BankSystem
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
@@ -29,7 +29,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     if(MSVC)
         #ToDo: add flags for msfc
     else()
-        target_compile_options(change_currencies_cli
+        target_compile_options(BankSystem
                 PUBLIC
                 -O3 -g3 -Wall -Wextra -pedantic
             )
@@ -38,7 +38,7 @@ else()
     if(MSVC)
         #ToDo: add flags for msfc
     else()
-        target_compile_options(change_currencies_cli
+        target_compile_options(BankSystem
                 PUBLIC
                 -O3 -Wall -Wextra -pedantic
             )
