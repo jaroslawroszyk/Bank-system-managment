@@ -4,7 +4,7 @@ As I develop my skills, I will want to put this application graphically together
 In the future, I would like to link it to the database and create TDD
 
 ## Build
- Build requires cmake 3.0+
+ Build requires cmake 3.17+
 ```
 mkdir build
 cd build
@@ -14,6 +14,6 @@ make
 
 ## Execute
 ```
-cd /src
+cd /bin
 ./BankSystem
 ```
