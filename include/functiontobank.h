@@ -1,5 +1,5 @@
 #pragma once
-
+#include "bank.h"
 #include <algorithm>
 #include <cctype>
 #include <fstream>
