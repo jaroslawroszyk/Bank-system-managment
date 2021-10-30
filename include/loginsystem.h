@@ -1,4 +1,5 @@
 #pragma once
+
 #include <fstream>
 #include <iostream>
 
@@ -11,8 +12,12 @@ enum class LoginSystem
 
 std::istream &operator>>(std::istream &in, LoginSystem &entry);
 
-//throw it into class
+class Login
+{
+public:
+    bool regstr();
 
-bool regstr();
-bool login();
-void menuLogin();
+    bool login();
+
+    void menuLogin();
+};

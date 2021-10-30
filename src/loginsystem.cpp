@@ -1,7 +1,7 @@
 #include "../include/loginsystem.h"
 #define WORKERSFILE "workers.txt"
 
-bool regstr()
+bool Login::regstr()
 {
     std::string login, password, l, p;
     std::cout << "Enter Login: ";
@@ -15,7 +15,7 @@ bool regstr()
     return true;
 }
 
-bool login()
+bool Login::login()
 {
     int c;
     std::string login, password, l, p;
@@ -54,7 +54,7 @@ std::istream &operator>>(std::istream &in, LoginSystem &entry)
     return in;
 }
 
-void menuLogin()
+void Login::menuLogin()
 {
     LoginSystem entr;
     do
