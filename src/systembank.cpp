@@ -13,6 +13,7 @@ void menu()
 {
     int n;
     SystemBank enter;
+    Functionality fun;
     do
     {
         std::cout << "[1] New account" << std::endl;
@@ -29,64 +30,65 @@ void menu()
         {
         case SystemBank::s_newaccount:
         {
-            cleaningScreen();
+
+            fun.cleaningScreen();
             std::cout << "Creating new account \n";
-            writeAccount();
+            fun.writeAccount();
             break;
         }
         case SystemBank::s_deposit:
         {
-            cleaningScreen();
+            fun.cleaningScreen();
             std::cout << "Deposit \n";
-            enterAccNo();
+            fun.enterAccNo();
             std::cin >> n;
-            depositOrWithdraw(n, 1);
+            fun.depositOrWithdraw(n, 1);
             break;
         }
         case SystemBank::s_withdraw:
         {
-            cleaningScreen();
+            fun.cleaningScreen();
             std::cout << "Withdraw \n";
-            enterAccNo();
+            fun.enterAccNo();
             std::cin >> n;
-            depositOrWithdraw(n, 2);
+            fun.depositOrWithdraw(n, 2);
             break;
         }
         case SystemBank::s_balance:
         {
-            cleaningScreen();
+            fun.cleaningScreen();
             std::cout << "Balance \n";
-            enterAccNo();
+            fun.enterAccNo();
             std::cin >> n;
-            displayDetails(n);
+            fun.displayDetails(n);
             break;
         }
         case SystemBank::s_holder:
         {
-            cleaningScreen();
+           fun.cleaningScreen();
             std::cout << "Account holder list \n";
-            displayAllAccount();
+            fun.displayAllAccount();
             std::cout << "\n\n\n";
             break;
         }
         case SystemBank::s_closeacc:
         {
-            cleaningScreen();
-            displayAllAccount();
+            fun.cleaningScreen();
+            fun.displayAllAccount();
             std::cout << "\n\n";
             std::cout << "Close account! \n";
-            enterAccNo();
+            fun.enterAccNo();
             std::cin >> n;
-            deleteAccount(n);
+            fun.deleteAccount(n);
             break;
         }
         case SystemBank::s_modify:
         {
-            cleaningScreen();
+            fun.cleaningScreen();
             std::cout << "Modify account! \n";
-            enterAccNo();
+            fun.enterAccNo();
             std::cin >> n;
-            modifyAccount(n);
+            fun.modifyAccount(n);
             break;
         }
         case SystemBank::s_exit:

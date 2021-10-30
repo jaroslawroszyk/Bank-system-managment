@@ -5,7 +5,8 @@ bool isNumber(const std::string &s)
 {
   return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
 }
-
+//creating Interfaces and replacing void functions to returning something
+//REFACTOR THIS PIECE OF SHIT
 void account::create_acc()
 {
     std::ifstream checkid;

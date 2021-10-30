@@ -2,7 +2,7 @@
 #include "../include/bank.h"
 #define FNAME "data.dat"
 
-void writeAccount()
+void Functionality::writeAccount()
 {
     account aco;
     std::ofstream file;
@@ -12,7 +12,7 @@ void writeAccount()
     file.close();
 }
 
-void displayDetails(int numberAccount)
+void Functionality::displayDetails(int numberAccount)
 {
 
     account aco;
@@ -41,9 +41,10 @@ void displayDetails(int numberAccount)
     {
         std::cout << "account doesn't exist" << std::endl;
     }
+
 }
 
-void modifyAccount(int numberAccount)
+void Functionality::modifyAccount(int numberAccount)
 {
     bool found = false;
     account aco;
@@ -76,7 +77,7 @@ void modifyAccount(int numberAccount)
     }
 }
 
-void deleteAccount(int numberAccount)
+void Functionality::deleteAccount(int numberAccount)
 {
     account aco;
     std::ifstream inFile;
@@ -104,7 +105,7 @@ void deleteAccount(int numberAccount)
     std::cout << "Deleted!" << std::endl;
 }
 
-void displayAllAccount()
+void Functionality::displayAllAccount()
 {
     account aco;
     std::ifstream inFile;
@@ -123,7 +124,7 @@ void displayAllAccount()
     inFile.close();
 }
 
-void depositOrWithdraw(int numberAccount, int option)
+void Functionality::depositOrWithdraw(int numberAccount, int option)
 {
     account aco;
     bool found = false;
@@ -175,12 +176,12 @@ void depositOrWithdraw(int numberAccount, int option)
     }
 }
 
-void enterAccNo()
+void Functionality::enterAccNo()
 {
     std::cout << "Enter account number: ";
 }
 
-void cleaningScreen()
+void Functionality::cleaningScreen()
 {
     std::system("clear");
 }

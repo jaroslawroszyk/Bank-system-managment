@@ -72,7 +72,7 @@ void menuLogin()
         }
         case LoginSystem::logi:
         {
-            // std::system("clear");
+             std::system("clear");
             std::cout << "logi\n";
 
             bool stat = login();
