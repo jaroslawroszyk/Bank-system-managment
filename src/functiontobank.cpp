@@ -217,7 +217,6 @@ void Functionality::depositOrWithdraw(int numberAccount, int option)
     }
 }
 
-
 void Functionality::enterAccNo()
 {
     std::cout << "Enter account number: ";

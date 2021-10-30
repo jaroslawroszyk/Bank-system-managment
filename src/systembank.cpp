@@ -9,6 +9,19 @@ std::istream &operator>>(std::istream &in, SystemBank &enter)
     return in;
 }
 
+void showOptionInMenu()
+{
+    std::cout << "[1] New account" << std::endl;
+    std::cout << "[2] Deposit amount" << std::endl;
+    std::cout << "[3] Withdraw amount" << std::endl;
+    std::cout << "[4] Balance account" << std::endl;
+    std::cout << "[5] Account holder list" << std::endl;
+    std::cout << "[6] Close account" << std::endl;
+    std::cout << "[7] Modify account" << std::endl;
+    std::cout << "[8] Exit" << std::endl;
+    std::cout << "Select options 1-8: ";
+}
+
 void menu()
 {
     int n;
@@ -16,21 +29,12 @@ void menu()
     Functionality fun;
     do
     {
-        std::cout << "[1] New account" << std::endl;
-        std::cout << "[2] Deposit amount" << std::endl;
-        std::cout << "[3] Withdraw amount" << std::endl;
-        std::cout << "[4] Balance account" << std::endl;
-        std::cout << "[5] Account holder list" << std::endl;
-        std::cout << "[6] Close account" << std::endl;
-        std::cout << "[7] Modify account" << std::endl;
-        std::cout << "[8] Exit" << std::endl;
-        std::cout << "Select options 1-8: ";
+        showOptionInMenu();
         std::cin >> enter;
         switch (enter)
         {
         case SystemBank::s_newaccount:
         {
-
             fun.cleaningScreen();
             std::cout << "Creating new account \n";
             fun.writeAccount();
