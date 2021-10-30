@@ -1,5 +1,7 @@
 #include "../include/functiontobank.h"
-#include "../include/bank.h"
+#include "../include/account.h"
+#include "bank.h"
+
 #define FNAME "data.dat"
 
 void Functionality::writeAccount()
@@ -10,6 +12,20 @@ void Functionality::writeAccount()
     aco.create_acc();
     file.write(reinterpret_cast<char *>(&aco), sizeof(account));
     file.close();
+}
+
+bool Functionality::ifFileIsReading(int numberAccount, account &aco, std::ifstream &inFile) const
+{
+    bool well;
+    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
+    {
+        if (aco.returnacnumber() == numberAccount)
+        {
+            aco.showacc();
+            well = true;
+        }
+    }
+    return well;
 }
 
 void Functionality::displayDetails(int numberAccount)
@@ -27,14 +43,7 @@ void Functionality::displayDetails(int numberAccount)
 
     std::cout << "Details" << std::endl;
 
-    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
-    {
-        if (aco.returnacnumber() == numberAccount)
-        {
-            aco.showacc();
-            well = true;
-        }
-    }
+    well = ifFileIsReading(numberAccount, aco, inFile);
 
     inFile.close();
     if (well == false)
@@ -42,6 +51,24 @@ void Functionality::displayDetails(int numberAccount)
         std::cout << "account doesn't exist" << std::endl;
     }
 
+}
+
+bool Functionality::isModify(int numberAccount, account &aco, std::fstream &File) const
+{
+    bool found;
+    File.read(reinterpret_cast<char *>(&aco), sizeof(account));
+    if (aco.returnacnumber() == numberAccount)
+    {
+        aco.showacc();
+        std::cout << "MODIFY OLD DETAILS: " << std::endl;
+        aco.modify();
+        int pos = (-1) * static_cast<int>(sizeof(account));
+        File.seekp(pos, std::ios::cur);
+        File.write(reinterpret_cast<char *>(&aco), sizeof(account));
+        std::cout << "Details have been updated!" << std::endl;
+        found = true;
+    }
+    return found;
 }
 
 void Functionality::modifyAccount(int numberAccount)
@@ -57,23 +84,25 @@ void Functionality::modifyAccount(int numberAccount)
     }
     while (!File.eof() && found == false)
     {
-        File.read(reinterpret_cast<char *>(&aco), sizeof(account));
-        if (aco.returnacnumber() == numberAccount)
-        {
-            aco.showacc();
-            std::cout << "MODIFY OLD DETAILS: " << std::endl;
-            aco.modify();
-            int pos = (-1) * static_cast<int>(sizeof(account));
-            File.seekp(pos, std::ios::cur);
-            File.write(reinterpret_cast<char *>(&aco), sizeof(account));
-            std::cout << "Details have been updated!" << std::endl;
-            found = true;
-        }
+        found = isModify(numberAccount, aco, File);
     }
     File.close();
     if (found == false)
     {
         std::cout << "account doesn't exist" << std::endl;
+    }
+}
+
+
+void
+Functionality::IfDataIsNotCorrect(int numberAccount, account &aco, std::ifstream &inFile, std::ofstream &outFile) const
+{
+    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
+    {
+        if (aco.returnacnumber() != numberAccount)
+        {
+            outFile.write(reinterpret_cast<char *>(&aco), sizeof(account));
+        }
     }
 }
 
@@ -90,19 +119,21 @@ void Functionality::deleteAccount(int numberAccount)
     }
     outFile.open("Temp.dat", std::ios::binary);
     inFile.seekg(0, std::ios::beg);
-    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
-    {
-        if (aco.returnacnumber() != numberAccount)
-        {
-            outFile.write(reinterpret_cast<char *>(&aco), sizeof(account));
-        }
-    }
+    IfDataIsNotCorrect(numberAccount, aco, inFile, outFile);
     inFile.close();
     outFile.close();
 
     std::remove(FNAME);
     std::rename("Temp.dat", FNAME);
     std::cout << "Deleted!" << std::endl;
+}
+
+void Functionality::generateRaport(account &aco, std::ifstream &inFile) const
+{
+    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
+    {
+        aco.report();
+    }
 }
 
 void Functionality::displayAllAccount()
@@ -117,11 +148,38 @@ void Functionality::displayAllAccount()
     }
     std::cout << "\tACCOUNT list" << std::endl;
     std::cout << "No    Surname     Name     Type   Balance" << std::endl;
-    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
-    {
-        aco.report();
-    }
+    generateRaport(aco, inFile);
     inFile.close();
+}
+
+int Functionality::optionDeposit(int option, account &aco, int amount) const
+{
+    if (option == 1)
+    {
+        std::cout << "Deposit, enter the amount: ";
+        std::cin >> amount;
+        aco.deposit(amount);
+    }
+    return amount;
+}
+
+int Functionality::optionWithdraw(int option, account &aco, int amount) const
+{
+    if (option == 2)
+    {
+        std::cout << "Whitdraw, enter the amount: ";
+        std::cin >> amount;
+        int balance = aco.returndeposit() - amount;
+        if ((balance < 500 && aco.returntype() == 'S') || (balance < 1000 && aco.returntype() == 'P'))
+        {
+            std::cout << "Insufficiency balance";
+        }
+        else
+        {
+            aco.withdraw(amount);
+        }
+    }
+    return amount;
 }
 
 void Functionality::depositOrWithdraw(int numberAccount, int option)
@@ -142,26 +200,9 @@ void Functionality::depositOrWithdraw(int numberAccount, int option)
         if (aco.returnacnumber() == numberAccount)
         {
             aco.showacc();
-            if (option == 1)
-            {
-                std::cout << "Deposit, enter the amount: ";
-                std::cin >> amount;
-                aco.deposit(amount);
-            }
-            if (option == 2)
-            {
-                std::cout << "Whitdraw, enter the amount: ";
-                std::cin >> amount;
-                int balance = aco.returndeposit() - amount;
-                if ((balance < 500 && aco.returntype() == 'S') || (balance < 1000 && aco.returntype() == 'P'))
-                {
-                    std::cout << "Insufficiency balance";
-                }
-                else
-                {
-                    aco.withdraw(amount);
-                }
-            }
+            amount = optionDeposit(option, aco, amount);
+            amount = optionWithdraw(option, aco, amount);
+
             int pos = (-1) * static_cast<int>(sizeof(aco));
             File.seekp(pos, std::ios::cur);
             File.write(reinterpret_cast<char *>(&aco), sizeof(account));
@@ -176,6 +217,7 @@ void Functionality::depositOrWithdraw(int numberAccount, int option)
     }
 }
 
+
 void Functionality::enterAccNo()
 {
     std::cout << "Enter account number: ";
@@ -183,5 +225,5 @@ void Functionality::enterAccNo()
 
 void Functionality::cleaningScreen()
 {
-    std::system("clear");
+    std::system("cls");
 }

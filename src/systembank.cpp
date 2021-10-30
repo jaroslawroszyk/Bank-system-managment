@@ -1,5 +1,5 @@
 #include "../include/systembank.h"
-#include "../include/bank.h"
+#include "../include/account.h"
 #include "../include/functiontobank.h"
 
 std::istream &operator>>(std::istream &in, SystemBank &enter)
