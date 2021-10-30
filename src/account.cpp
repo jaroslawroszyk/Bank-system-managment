@@ -1,57 +1,18 @@
 #include "../include/account.h"
 #define FNAME "data.dat"
 
-bool isNumber(const std::string &s)
-{
-  return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
-}
 //creating Interfaces and replacing void functions to returning something
 //REFACTOR THIS PIECE OF SHIT
 void account::create_acc()
 {
     std::ifstream checkid;
     checkid.open(FNAME, std::ios::binary | std::ios::app);
-    std::cout << "Enter account number: ";
-    std::cin >> m_accnumber;
+    m_accnumber = input->getAccountNumber();
+    m_surname = input ->getSurname();
+    m_name = input->getName();
+    m_type = input ->getAccountType();
+    m_deposit = input->getDepositAmount();
 
-    std::cout << "Enter surname of the account holder: ";
-    std::cin.ignore();
-    std::cin.getline(m_surname, 50);
-
-    while (isNumber(m_surname))
-    {
-        std::cout << "This is the number of re-enter last name: ";
-        std::cin >> m_surname;
-    }
-
-    std::cout << "Enter name of the account holder: ";
-    std::cin.ignore();
-    std::cin.getline(m_name, 50);
-    while (isNumber(m_name))
-    {
-        std::cout << "This is the number of re-enter  name: ";
-        std::cin >> m_name;
-    }
-
-    std::cout << "Enter type account: (S-standard/P-Premium) ";
-    std::cin >> m_type;
-    m_type = toupper(m_type);
-
-    while (m_type != 'S' && m_type != 's' && m_type != 'P' && m_type != 'p')
-    {
-        std::cout << "Invalid data! \n Please enter again: ";
-        std::cin >> m_type;
-    }
-
-    std::cout << "enter the amount of the first payment(not less than 500) \n";
-    std::cin >> m_deposit;
-
-    while (m_deposit < 500)
-    {
-        std::cout << "Less than 500!\n";
-        std::cout << "Enter again: ";
-        std::cin >> m_deposit;
-    }
 }
 
 void account::showacc() const

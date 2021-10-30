@@ -8,9 +8,9 @@
 
 class Functionality
 {
-
+//extract some method to new class ?
 public:
-    void writeAccount();
+    static void writeAccount();
 
     void displayDetails(int numberAccount);
 
@@ -22,7 +22,7 @@ public:
 
     void depositOrWithdraw(int numberAccount, int option);
 
-    void enterAccNo();
+    static void enterAccNo();
 
     void cleaningScreen();
 

@@ -6,12 +6,12 @@
 #include <iomanip>
 #include <iostream>
 #include "bank.h"
-
+#include "CliInput.h"
 
 class account : public bank
 {
 public:
-
+    account(const InputInterface* input) : input(input) {}
     void create_acc();
 
     void showacc() const;
@@ -31,9 +31,10 @@ public:
     char returntype() const;
 
 private:
-    int m_accnumber;
-    char m_name[50];
-    char m_surname[50];
-    int m_deposit;
-    char m_type;
+    const InputInterface* input;
+    int m_accnumber = -1;
+    std::string m_name;
+    std::string m_surname;
+    int m_deposit = 0;
+    char m_type = 'S';
 };

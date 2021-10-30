@@ -1,17 +1,19 @@
 #include "../include/functiontobank.h"
 #include "../include/account.h"
 #include "bank.h"
-
+#include "CliInput.h"
 #define FNAME "data.dat"
 
 void Functionality::writeAccount()
 {
-    account aco;
+    const InputInterface *input = new CliInput;
+    account aco(input);
     std::ofstream file;
     file.open(FNAME, std::ios::binary | std::ios::app);
     aco.create_acc();
     file.write(reinterpret_cast<char *>(&aco), sizeof(account));
     file.close();
+    delete input;
 }
 
 bool Functionality::ifFileIsReading(int numberAccount, account &aco, std::ifstream &inFile) const
@@ -31,7 +33,7 @@ bool Functionality::ifFileIsReading(int numberAccount, account &aco, std::ifstre
 void Functionality::displayDetails(int numberAccount)
 {
 
-    account aco;
+    account aco(nullptr);
     bool well = false;
     std::ifstream inFile;
     inFile.open(FNAME, std::ios::binary);
@@ -74,7 +76,7 @@ bool Functionality::isModify(int numberAccount, account &aco, std::fstream &File
 void Functionality::modifyAccount(int numberAccount)
 {
     bool found = false;
-    account aco;
+    account aco(nullptr);
     std::fstream File;
     File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
@@ -94,8 +96,7 @@ void Functionality::modifyAccount(int numberAccount)
 }
 
 
-void
-Functionality::IfDataIsNotCorrect(int numberAccount, account &aco, std::ifstream &inFile, std::ofstream &outFile) const
+void Functionality::IfDataIsNotCorrect(int numberAccount, account &aco, std::ifstream &inFile, std::ofstream &outFile) const
 {
     while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
     {
@@ -108,7 +109,7 @@ Functionality::IfDataIsNotCorrect(int numberAccount, account &aco, std::ifstream
 
 void Functionality::deleteAccount(int numberAccount)
 {
-    account aco;
+    account aco(nullptr);
     std::ifstream inFile;
     std::ofstream outFile;
     inFile.open(FNAME, std::ios::binary);
@@ -138,7 +139,7 @@ void Functionality::generateRaport(account &aco, std::ifstream &inFile) const
 
 void Functionality::displayAllAccount()
 {
-    account aco;
+    account aco(nullptr);
     std::ifstream inFile;
     inFile.open(FNAME, std::ios::binary);
     if (!inFile)
@@ -184,9 +185,9 @@ int Functionality::optionWithdraw(int option, account &aco, int amount) const
 
 void Functionality::depositOrWithdraw(int numberAccount, int option)
 {
-    account aco;
+    account aco(nullptr);
     bool found = false;
-    int amount;
+    int amount = 0;
     std::fstream File;
     File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
@@ -224,5 +225,4 @@ void Functionality::enterAccNo()
 
 void Functionality::cleaningScreen()
 {
-    std::system("cls");
 }
