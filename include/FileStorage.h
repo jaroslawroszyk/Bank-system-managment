@@ -17,8 +17,11 @@ public:
 
     void writeAccount(const account &acc) override;
 
+
     std::vector<account> readAllAccounts() override;
     account FindAccount(int accountNumber) const;
+
+    bool modifyAccount(account& ac);
 
     ~FileStorage()
     {

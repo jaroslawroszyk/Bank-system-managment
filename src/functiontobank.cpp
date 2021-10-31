@@ -54,24 +54,32 @@ bool Functionality::isModify(int numberAccount, account &aco, std::fstream &File
 
 void Functionality::modifyAccount(int numberAccount)
 {
-    bool found = false;
-    account aco(nullptr);
-    std::fstream File;
-    File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
-    if (!File)
-    {
-        std::cout << "File couldn't be open!!";
-        return;
-    }
-    while (!File.eof() && found == false)
-    {
-        found = isModify(numberAccount, aco, File);
-    }
-    File.close();
-    if (found == false)
-    {
-        std::cout << "account doesn't exist" << std::endl;
-    }
+    FileStorage storage;
+    account aco = storage.FindAccount(numberAccount);
+    aco.showacc();
+    std::cout << "MODIFY OLD DETAILS: " << std::endl;
+    aco.modify();
+
+    storage.modifyAccount(aco);
+    
+//    bool found = false;
+//    account aco(nullptr);
+//    std::fstream File;
+//    File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
+//    if (!File)
+//    {
+//        std::cout << "File couldn't be open!!";
+//        return;
+//    }
+//    while (!File.eof() && found == false)
+//    {
+//        found = isModify(numberAccount, aco, File);
+//    }
+//    File.close();
+//    if (found == false)
+//    {
+//        std::cout << "account doesn't exist" << std::endl;
+//    }
 }
 
 

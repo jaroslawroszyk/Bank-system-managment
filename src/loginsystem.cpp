@@ -24,7 +24,7 @@ std::string Login::getLogin()
     std::string login;
     std::cout << "Enter login: ";
     std::cin >> login;
-    setMLogin(login);
+//    setMLogin(login);
     return login;
 }
 
@@ -33,7 +33,7 @@ std::string Login::getPassword()
     std::string password;
     std::cout << "Enter password: ";
     std::cin >> password;
-    setMPassword(password);
+//    setMPassword(password);
     return password;
 }
 
@@ -47,12 +47,12 @@ void Login::setMPassword(const std::string &mPassword)
     m_password = mPassword;
 }
 
-
+//repair register
 bool Login::Islogin()
 {
     std::string lo, po;
-    getLogin();
-    getPassword();
+    m_login = getLogin();
+    m_password = getPassword();
 
     std::ifstream inp(WORKERSFILE);
     while (inp >> lo >> po)
@@ -60,7 +60,7 @@ bool Login::Islogin()
         if (lo == getLog() && po == getPas())
         {
             std::cout << "Login suc! \n";
-            std::this_thread::sleep_for(std::chrono::seconds(5));
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             std::cout << "\033[2J\033[1;1H"; //clear the screen
             return true;
         }

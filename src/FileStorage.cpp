@@ -1,5 +1,6 @@
 #include "FileStorage.h"
 #include "account.h"
+
 void FileStorage::writeAccount(const account &acc)
 {
     std::ofstream writeAcc;
@@ -64,7 +65,7 @@ void FileStorage::getIntData(const std::string &line, size_t &lastPos, int &data
 void FileStorage::writeAllAccount()
 {
     std::remove(FileName);
-    for(const auto &account : accounts)
+    for (const auto &account: accounts)
     {
         writeAccount(account);
     }
@@ -72,13 +73,29 @@ void FileStorage::writeAllAccount()
 
 account FileStorage::FindAccount(int accountNumber) const
 {
-    for(const auto &account : accounts)
+    for (const auto &account: accounts)
     {
-        if(accountNumber == account.getMAccnumber())
+        if (accountNumber == account.getMAccnumber())
         {
             return account;
         }
     }
     account ac(nullptr);
     return ac;
+}
+
+bool FileStorage::modifyAccount(account &ac)
+{
+    for (auto &find: accounts)
+    {
+        if (find.getMAccnumber() == ac.getMAccnumber())
+        {
+            find.setMName(ac.getMName());
+            find.setMSurname(ac.getMSurname());
+            find.setMDeposit(ac.getMDeposit());
+            find.setMType(ac.getMType());
+            return true;
+        }
+    }
+    return false;
 }
