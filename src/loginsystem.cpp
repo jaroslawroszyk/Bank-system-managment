@@ -1,6 +1,10 @@
 #include "../include/loginsystem.h"
-#define WORKERSFILE "workers.txt"
+#include "systembank.h"
+#include <thread>
 #include <cstdlib>
+#include <chrono>
+#define WORKERSFILE "workers.txt"
+
 bool Login::regstr()
 {
     std::string login, password, l, p;
@@ -15,36 +19,54 @@ bool Login::regstr()
     return true;
 }
 
-bool Login::login()
+std::string Login::getLogin()
 {
-    int c;
-    std::string login, password, l, p;
+    std::string login;
     std::cout << "Enter login: ";
     std::cin >> login;
+    setMLogin(login);
+    return login;
+}
+
+std::string Login::getPassword()
+{
+    std::string password;
     std::cout << "Enter password: ";
     std::cin >> password;
+    setMPassword(password);
+    return password;
+}
+
+void Login::setMLogin(const std::string &mLogin)
+{
+    m_login = mLogin;
+}
+
+void Login::setMPassword(const std::string &mPassword)
+{
+    m_password = mPassword;
+}
+
+
+bool Login::Islogin()
+{
+    std::string lo, po;
+    getLogin();
+    getPassword();
+
     std::ifstream inp(WORKERSFILE);
-    while (inp >> l >> p)
+    while (inp >> lo >> po)
     {
-        if (l == login && p == password)
+        if (lo == getLog() && po == getPas())
         {
-            c = 1;
-            std::cout << "login success!";
+            std::cout << "Login suc! \n";
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+            std::system("clear");
+            return true;
         }
     }
-
-    if (c == 1)
-    {
-        std::cout << "Login success! " << std::endl;
-        return true;
-    }
-    else
-    {
-        std::cout << "NOPE!";
-        return false;
-    }
     inp.close();
-    return true;
+    return false;
 }
 
 std::istream &operator>>(std::istream &in, LoginSystem &entry)
@@ -62,37 +84,49 @@ void Login::menuLogin()
         std::cout << "[1] Register\n";
         std::cout << "[2] Login\n";
         std::cin >> entr;
+
         switch (entr)
         {
-        case LoginSystem::regi:
-        {
-            std::cout << "Regis\n";
-            regstr();
-            break;
-        }
-        case LoginSystem::logi:
-        {
+            case LoginSystem::regi:
+            {
+                std::cout << "Regis\n";
+                regstr();
+                //isLogin();
+                break;
+            }
+            case LoginSystem::logi:
+            {
 //            std::system("clear");
-            std::cout << "logi\n";
-
-            bool stat = login();
-            if (!stat)
-            {
-                std::cout << "False login!" << std::endl;
-                menuLogin();
-            }
-            else
-            {
-                std::cout << "successful logged in!" << std::endl;
+                bool is = Islogin();
+                if (!is)
+                {
+                    menuLogin();
+                }
+                else
+                {
+                    menu();
+                }
+//                bool stat = Islogin();
+//
+//                if (stat == true)
+//                {
+//                    std::cout << "successful logged in!" << std::endl;
+//                    menu();
+//                }
+//                else
+//                {
+//                    std::cout << "False Islogin!" << std::endl;
+////                    menuLogin();
+//                }
                 // std::system("clear");
+                break;
             }
-            break;
-        }
-        default:
-        {
-            std::cout << "Not defined type\n";
-            break;
-        }
+            default:
+            {
+                std::cout << "Not defined type\n";
+                break;
+            }
         }
     } while (entr == LoginSystem::wrong);
 }
+

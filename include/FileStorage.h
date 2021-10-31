@@ -4,7 +4,7 @@
 #include <fstream>
 #include "CliInput.h"
 
-
+#define FileName "data.txt"
 class account;
 
 class FileStorage : public StorageInterface
@@ -26,9 +26,9 @@ public:
     }
 private:
     std::vector<account> accounts;
-    static constexpr char* FileName =  "data.txt";
+//    static constexpr char* FileName =  "data.txt";
     void writeAllAccount();
 
-    void getStringData(const std::string &line, size_t &lastPos, std::string &data) const;
-    void getIntData(const std::string &line, size_t &lastPos, int &data) const;
+    static void getStringData(const std::string &line, size_t &lastPos, std::string &data) ;
+    static void getIntData(const std::string &line, size_t &lastPos, int &data) ;
 };

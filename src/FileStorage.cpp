@@ -1,6 +1,5 @@
 #include "FileStorage.h"
 #include "account.h"
-
 void FileStorage::writeAccount(const account &acc)
 {
     std::ofstream writeAcc;
@@ -15,7 +14,7 @@ void FileStorage::writeAccount(const account &acc)
 
 std::vector<account> FileStorage::readAllAccounts()
 {
-    std::vector<account> accounts;
+    std::vector<account> accountss;
     std::ifstream inputFile;
     inputFile.open(FileName, std::ios::app);
     for (std::string line; getline(inputFile, line);)
@@ -42,24 +41,24 @@ std::vector<account> FileStorage::readAllAccounts()
         getIntData(line, lastPos, deposit);
         ac.setMDeposit(deposit);
 
-        lastPos = line.find(":", lastPos + 1);
+        lastPos = line.find(':', lastPos + 1);
         ac.setMType(line[lastPos + 2]);
 
-        accounts.push_back(ac);
+        accountss.push_back(ac);
     }
-    return accounts;
+    return accountss;
 }
 
-void FileStorage::getStringData(const std::string &line, size_t &lastPos, std::string &data) const
+void FileStorage::getStringData(const std::string &line, size_t &lastPos, std::string &data)
 {
-    lastPos = line.find(":", lastPos + 1);
-    data = (line.substr(lastPos + 1, line.find("#", lastPos) - 1 - lastPos));
+    lastPos = line.find(':', lastPos + 1);
+    data = (line.substr(lastPos + 1, line.find('#', lastPos) - 1 - lastPos));
 }
 
-void FileStorage::getIntData(const std::string &line, size_t &lastPos, int &data) const
+void FileStorage::getIntData(const std::string &line, size_t &lastPos, int &data)
 {
-    lastPos = line.find(":", lastPos + 1);
-    data = std::stoi(line.substr(lastPos + 1, line.find("#", lastPos) - 1 - lastPos));
+    lastPos = line.find(':', lastPos + 1);
+    data = std::stoi(line.substr(lastPos + 1, line.find('#', lastPos) - 1 - lastPos));
 }
 
 void FileStorage::writeAllAccount()
