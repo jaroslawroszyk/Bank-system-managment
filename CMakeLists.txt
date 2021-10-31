@@ -31,7 +31,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     else()
         target_compile_options(BankSystem
                 PUBLIC
-                -O3 -g3 -Wall -Wextra -pedantic  -Wno-unused-parameter -Wunused
+                -O3 -g3 -Wall -Wextra -pedantic -Werror -Wno-unused-parameter -Wunused
             )
     endif()
 else()

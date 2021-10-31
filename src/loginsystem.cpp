@@ -61,7 +61,7 @@ bool Login::Islogin()
         {
             std::cout << "Login suc! \n";
             std::this_thread::sleep_for(std::chrono::seconds(5));
-            std::system("clear");
+            std::cout << "\033[2J\033[1;1H"; //clear the screen
             return true;
         }
     }
@@ -106,19 +106,6 @@ void Login::menuLogin()
                 {
                     menu();
                 }
-//                bool stat = Islogin();
-//
-//                if (stat == true)
-//                {
-//                    std::cout << "successful logged in!" << std::endl;
-//                    menu();
-//                }
-//                else
-//                {
-//                    std::cout << "False Islogin!" << std::endl;
-////                    menuLogin();
-//                }
-                // std::system("clear");
                 break;
             }
             default:
