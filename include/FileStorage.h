@@ -3,7 +3,7 @@
 #include "StorageInterface.h"
 #include <fstream>
 #include "CliInput.h"
-
+#include <algorithm>
 //#define FileName "data.txt"
 class account;
 
@@ -23,6 +23,7 @@ public:
 
     bool modifyAccount(account& ac);
 
+    bool deleteAccount(int accNumber);
     ~FileStorage()
     {
     }

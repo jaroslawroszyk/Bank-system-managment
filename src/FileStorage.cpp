@@ -100,3 +100,14 @@ bool FileStorage::modifyAccount(account &ac)
     }
     return false;
 }
+
+bool FileStorage::deleteAccount(int accNumber)
+{
+    auto newEnd= std::remove_if(accounts.begin(), accounts.end(), [accNumber](const account &acc)
+    {
+        return accNumber == acc.getMAccnumber();
+    });
+    accounts.erase(newEnd, accounts.end());
+    writeAllAccount();
+    return true;
+}
