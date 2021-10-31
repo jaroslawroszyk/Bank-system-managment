@@ -94,6 +94,7 @@ bool FileStorage::modifyAccount(account &ac)
             find.setMSurname(ac.getMSurname());
             find.setMDeposit(ac.getMDeposit());
             find.setMType(ac.getMType());
+            writeAllAccount();
             return true;
         }
     }

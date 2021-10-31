@@ -25,7 +25,6 @@ public:
 
     ~FileStorage()
     {
-        writeAllAccount();
     }
 private:
     std::vector<account> accounts;

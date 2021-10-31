@@ -61,7 +61,7 @@ void Functionality::modifyAccount(int numberAccount)
     aco.modify();
 
     storage.modifyAccount(aco);
-    
+
 //    bool found = false;
 //    account aco(nullptr);
 //    std::fstream File;
@@ -207,4 +207,5 @@ void Functionality::enterAccNo()
 
 void Functionality::cleaningScreen()
 {
+    std::cout << "\033[2J\033[1;1H";
 }
