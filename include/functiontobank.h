@@ -8,9 +8,9 @@
 
 class Functionality
 {
-//extract some method to new class ?
+
 public:
-    static void writeAccount();
+    void writeAccount();
 
     void displayDetails(int numberAccount);
 
@@ -22,16 +22,17 @@ public:
 
     void depositOrWithdraw(int numberAccount, int option);
 
-    static void enterAccNo();
+    void enterAccNo();
 
     void cleaningScreen();
 
+    bool ifFileIsReading(int numberAccount, account &aco, std::ifstream &inFile) const;
 
     bool isModify(int numberAccount, account &aco, std::fstream &File) const;
 
     void IfDataIsNotCorrect(int numberAccount, account &aco, std::ifstream &inFile, std::ofstream &outFile) const;
 
-    void generateRaport() const;
+    void generateRaport(account &aco, std::ifstream &inFile) const;
 
     int optionDeposit(int option, account &aco, int amount) const;
 

@@ -1,6 +1,6 @@
 #include "../include/loginsystem.h"
 #define WORKERSFILE "workers.txt"
-#include <cstdlib>
+
 bool Login::regstr()
 {
     std::string login, password, l, p;
@@ -72,7 +72,7 @@ void Login::menuLogin()
         }
         case LoginSystem::logi:
         {
-//            std::system("clear");
+             std::system("clear");
             std::cout << "logi\n";
 
             bool stat = login();

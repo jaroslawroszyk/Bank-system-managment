@@ -1,37 +1,56 @@
 #include "../include/functiontobank.h"
 #include "../include/account.h"
 #include "bank.h"
-#include "CliInput.h"
 
-#define FNAME "data.txt"
-
-#include "FileStorage.h"
+#define FNAME "data.dat"
 
 void Functionality::writeAccount()
 {
-    const InputInterface *input = new CliInput;
-    account aco(input);
+    account aco;
+    std::ofstream file;
+    file.open(FNAME, std::ios::binary | std::ios::app);
     aco.create_acc();
-
-    FileStorage storage;
-    storage.writeAccount(aco);
-
-    delete input;
+    file.write(reinterpret_cast<char *>(&aco), sizeof(account));
+    file.close();
 }
 
+bool Functionality::ifFileIsReading(int numberAccount, account &aco, std::ifstream &inFile) const
+{
+    bool well;
+    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
+    {
+        if (aco.returnacnumber() == numberAccount)
+        {
+            aco.showacc();
+            well = true;
+        }
+    }
+    return well;
+}
 
 void Functionality::displayDetails(int numberAccount)
 {
-    FileStorage storage;
-    account aco = storage.FindAccount(numberAccount);
-    std::cout << "Details" << std::endl;
 
-    if (aco.getMAccnumber() != -1)
+    account aco;
+    bool well = false;
+    std::ifstream inFile;
+    inFile.open(FNAME, std::ios::binary);
+    if (!inFile)
     {
-        aco.raport();
+        std::cout << "File couldn't be open!!";
         return;
     }
-    std::cout << "account doesn't exist" << std::endl;
+
+    std::cout << "Details" << std::endl;
+
+    well = ifFileIsReading(numberAccount, aco, inFile);
+
+    inFile.close();
+    if (well == false)
+    {
+        std::cout << "account doesn't exist" << std::endl;
+    }
+
 }
 
 bool Functionality::isModify(int numberAccount, account &aco, std::fstream &File) const
@@ -55,7 +74,7 @@ bool Functionality::isModify(int numberAccount, account &aco, std::fstream &File
 void Functionality::modifyAccount(int numberAccount)
 {
     bool found = false;
-    account aco(nullptr);
+    account aco;
     std::fstream File;
     File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
@@ -89,7 +108,7 @@ Functionality::IfDataIsNotCorrect(int numberAccount, account &aco, std::ifstream
 
 void Functionality::deleteAccount(int numberAccount)
 {
-    account aco(nullptr);
+    account aco;
     std::ifstream inFile;
     std::ofstream outFile;
     inFile.open(FNAME, std::ios::binary);
@@ -109,22 +128,28 @@ void Functionality::deleteAccount(int numberAccount)
     std::cout << "Deleted!" << std::endl;
 }
 
-void Functionality::generateRaport() const
+void Functionality::generateRaport(account &aco, std::ifstream &inFile) const
 {
-    FileStorage storage;
-    auto accounts = storage.readAllAccounts();
-    for (const auto &account: accounts)
+    while (inFile.read(reinterpret_cast<char *>(&aco), sizeof(account)))
     {
-        account.raport();
+        aco.report();
     }
 }
 
 void Functionality::displayAllAccount()
 {
+    account aco;
+    std::ifstream inFile;
+    inFile.open(FNAME, std::ios::binary);
+    if (!inFile)
+    {
+        std::cout << "File couldn't be open!!";
+        return;
+    }
     std::cout << "\tACCOUNT list" << std::endl;
     std::cout << "No    Surname     Name     Type   Balance" << std::endl;
-    generateRaport();
-
+    generateRaport(aco, inFile);
+    inFile.close();
 }
 
 int Functionality::optionDeposit(int option, account &aco, int amount) const
@@ -159,9 +184,9 @@ int Functionality::optionWithdraw(int option, account &aco, int amount) const
 
 void Functionality::depositOrWithdraw(int numberAccount, int option)
 {
-    account aco(nullptr);
+    account aco;
     bool found = false;
-    int amount = 0;
+    int amount;
     std::fstream File;
     File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
@@ -199,4 +224,5 @@ void Functionality::enterAccNo()
 
 void Functionality::cleaningScreen()
 {
+    std::system("cls");
 }

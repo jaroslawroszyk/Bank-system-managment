@@ -14,11 +14,11 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include)
 add_executable(BankSystem
     src/main.cpp
-    src/account.cpp
+    src/bank.cpp
     src/functiontobank.cpp
     src/loginsystem.cpp
     src/systembank.cpp
-        src/CliInput.cpp include/OutputInterface.h include/StorageInterface.h include/FileStorage.h src/FileStorage.cpp)
+)
 
 set_target_properties(BankSystem
     PROPERTIES
@@ -31,7 +31,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     else()
         target_compile_options(BankSystem
                 PUBLIC
-                -O3 -g3 -Wall -Wextra -pedantic -Werror -Wno-unused-parameter -Wunused
+                -O3 -g3 -Wall -Wextra -pedantic
             )
     endif()
 else()

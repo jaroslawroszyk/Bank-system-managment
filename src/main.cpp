@@ -6,7 +6,7 @@
 
 int main()
 {
-    Login login;
-    login.menuLogin();
+    Login log;
+    log.menuLogin();
     menu();
 }
