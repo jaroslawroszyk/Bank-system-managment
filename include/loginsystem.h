@@ -42,7 +42,6 @@ public:
     void setMPassword(const std::string &mPassword);
 
 private:
-
     std::string m_login;
     std::string m_password;
 };
