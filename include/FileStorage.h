@@ -3,8 +3,9 @@
 #include "StorageInterface.h"
 #include <fstream>
 #include "CliInput.h"
+#include <string>
 #include <algorithm>
-//#define FileName "data.txt"
+#define FileName "data.txt"
 class account;
 
 class FileStorage : public StorageInterface
@@ -29,7 +30,6 @@ public:
     }
 private:
     std::vector<account> accounts;
-    static constexpr char* FileName =  (char*)"data.txt";
     void writeAllAccount();
 
     static void getStringData(const std::string &line, size_t &lastPos, std::string &data) ;
