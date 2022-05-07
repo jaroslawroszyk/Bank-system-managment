@@ -1,11 +1,11 @@
-#include "../include/Systembank.h"
+#include "../include/BankOptions.h"
 #include "../include/Account.h"
 #include "../include/Functiontobank.h"
 
-std::istream &operator>>(std::istream &in, SystemBank &enter)
+std::istream &operator>>(std::istream &in, Operation::BankOptions &enter)
 {
     int int_entry;
-    enter = (in >> int_entry) ? static_cast<SystemBank>(int_entry) : SystemBank::s_exit;
+    enter = (in >> int_entry) ? static_cast<Operation::BankOptions>(int_entry) : Operation::BankOptions::s_exit;
     return in;
 }
 
@@ -25,7 +25,7 @@ void showOptionInMenu()
 void menu()
 {
     int n;
-    SystemBank enter;
+    Operation::BankOptions enter;
     Functionality fun;
     do
     {
@@ -33,14 +33,14 @@ void menu()
         std::cin >> enter;
         switch (enter)
         {
-        case SystemBank::s_newaccount:
+        case Operation::BankOptions::s_newaccount:
         {
             fun.cleaningScreen();
             std::cout << "Creating new Account \n";
             fun.writeAccount();
             break;
         }
-        case SystemBank::s_deposit:
+        case Operation::BankOptions::s_deposit:
         {
             fun.cleaningScreen();
             std::cout << "Deposit \n";
@@ -49,7 +49,7 @@ void menu()
             fun.depositOrWithdraw(n, 1);
             break;
         }
-        case SystemBank::s_withdraw:
+        case Operation::BankOptions::s_withdraw:
         {
             fun.cleaningScreen();
             std::cout << "Withdraw \n";
@@ -58,7 +58,7 @@ void menu()
             fun.depositOrWithdraw(n, 2);
             break;
         }
-        case SystemBank::s_balance:
+        case Operation::BankOptions::s_balance:
         {
             fun.cleaningScreen();
             std::cout << "Balance \n";
@@ -67,7 +67,7 @@ void menu()
             fun.displayDetails(n);
             break;
         }
-        case SystemBank::s_holder:
+        case Operation::BankOptions::s_holder:
         {
            fun.cleaningScreen();
             std::cout << "Account holder list \n";
@@ -75,7 +75,7 @@ void menu()
             std::cout << "\n\n\n";
             break;
         }
-        case SystemBank::s_closeacc:
+        case Operation::BankOptions::s_closeacc:
         {
             fun.cleaningScreen();
             fun.displayAllAccount();
@@ -86,7 +86,7 @@ void menu()
             fun.deleteAccount(n);
             break;
         }
-        case SystemBank::s_modify:
+        case Operation::BankOptions::s_modify:
         {
             fun.cleaningScreen();
             std::cout << "Modify Account! \n";
@@ -95,12 +95,12 @@ void menu()
             fun.modifyAccount(n);
             break;
         }
-        case SystemBank::s_exit:
+        case Operation::BankOptions::s_exit:
         {
             std::cout << "Bye bye " << std::endl;
 
             break;
         }
         }
-    } while (enter != SystemBank::s_exit);
+    } while (enter != Operation::BankOptions::s_exit);
 }
