@@ -1,5 +1,5 @@
-#include "../include/loginsystem.h"
-#include "../include/systembank.h"
+#include "../include/Loginsystem.h"
+#include "../include/Systembank.h"
 #include <thread>
 #include <cstdlib>
 #include <chrono>

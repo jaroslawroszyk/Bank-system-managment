@@ -1,6 +1,6 @@
-#include "../include/systembank.h"
-#include "../include/account.h"
-#include "../include/functiontobank.h"
+#include "../include/Systembank.h"
+#include "../include/Account.h"
+#include "../include/Functiontobank.h"
 
 std::istream &operator>>(std::istream &in, SystemBank &enter)
 {
@@ -11,13 +11,13 @@ std::istream &operator>>(std::istream &in, SystemBank &enter)
 
 void showOptionInMenu()
 {
-    std::cout << "[1] New account" << std::endl;
+    std::cout << "[1] New Account" << std::endl;
     std::cout << "[2] Deposit amount" << std::endl;
     std::cout << "[3] Withdraw amount" << std::endl;
-    std::cout << "[4] Balance account" << std::endl;
+    std::cout << "[4] Balance Account" << std::endl;
     std::cout << "[5] Account holder list" << std::endl;
-    std::cout << "[6] Close account" << std::endl;
-    std::cout << "[7] Modify account" << std::endl;
+    std::cout << "[6] Close Account" << std::endl;
+    std::cout << "[7] Modify Account" << std::endl;
     std::cout << "[8] Exit" << std::endl;
     std::cout << "Select options 1-8: ";
 }
@@ -36,7 +36,7 @@ void menu()
         case SystemBank::s_newaccount:
         {
             fun.cleaningScreen();
-            std::cout << "Creating new account \n";
+            std::cout << "Creating new Account \n";
             fun.writeAccount();
             break;
         }
@@ -80,7 +80,7 @@ void menu()
             fun.cleaningScreen();
             fun.displayAllAccount();
             std::cout << "\n\n";
-            std::cout << "Close account! \n";
+            std::cout << "Close Account! \n";
             fun.enterAccNo();
             std::cin >> n;
             fun.deleteAccount(n);
@@ -89,7 +89,7 @@ void menu()
         case SystemBank::s_modify:
         {
             fun.cleaningScreen();
-            std::cout << "Modify account! \n";
+            std::cout << "Modify Account! \n";
             fun.enterAccNo();
             std::cin >> n;
             fun.modifyAccount(n);

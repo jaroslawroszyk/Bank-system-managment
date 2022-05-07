@@ -1,6 +1,6 @@
 #include "../include/FileStorage.h"
-#include "../include/account.h"
-void FileStorage::writeAccount(const account &acc)
+#include "../include/Account.h"
+void FileStorage::writeAccount(const Account &acc)
 {
     std::ofstream writeAcc;
     writeAcc.open(FileName, std::ios::app);
@@ -12,9 +12,9 @@ void FileStorage::writeAccount(const account &acc)
     writeAcc.close();
 }
 
-std::vector<account> FileStorage::readAllAccounts()
+std::vector<Account> FileStorage::readAllAccounts()
 {
-    std::vector<account> accountss;
+    std::vector<Account> accountss;
     std::ifstream inputFile;
     inputFile.open(FileName, std::ios::app);
     for (std::string line; getline(inputFile, line);)
@@ -23,7 +23,7 @@ std::vector<account> FileStorage::readAllAccounts()
         //#Surname: sada#Name: asd#Acc Number: 1#Deposit: 2131321#Type P
         //No    Surname     Name     Type   Balance
         //1     sada#Name: a         asd#Acc Number: 1#Depo          2131321
-        account ac(nullptr);
+        Account ac(nullptr);
 
         std::string surname;
         getStringData(line, lastPos, surname);
@@ -70,7 +70,7 @@ void FileStorage::writeAllAccount()
     }
 }
 
-account FileStorage::FindAccount(int accountNumber) const
+Account FileStorage::FindAccount(int accountNumber) const
 {
     for (const auto &account: accounts)
     {
@@ -79,11 +79,11 @@ account FileStorage::FindAccount(int accountNumber) const
             return account;
         }
     }
-    account ac(nullptr);
+    Account ac(nullptr);
     return ac;
 }
 
-bool FileStorage::modifyAccount(account &ac)
+bool FileStorage::modifyAccount(Account &ac)
 {
     for (auto &find: accounts)
     {
@@ -102,7 +102,7 @@ bool FileStorage::modifyAccount(account &ac)
 
 bool FileStorage::deleteAccount(int accNumber)
 {
-    auto newEnd= std::remove_if(accounts.begin(), accounts.end(), [accNumber](const account &acc)
+    auto newEnd= std::remove_if(accounts.begin(), accounts.end(), [accNumber](const Account &acc)
     {
         return accNumber == acc.getMAccnumber();
     });

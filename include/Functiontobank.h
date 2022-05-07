@@ -1,5 +1,5 @@
 #pragma once
-#include "account.h"
+#include "Account.h"
 #include <algorithm>
 #include <cctype>
 #include <fstream>
@@ -29,7 +29,7 @@ public:
 
     void generateRaport() const;
 
-    int optionDeposit(int option, account &aco, int amount) const;
+    int optionDeposit(int option, Account &aco, int amount) const;
 
-    int optionWithdraw(int option, account &aco, int amount) const;
+    int optionWithdraw(int option, Account &aco, int amount) const;
 };

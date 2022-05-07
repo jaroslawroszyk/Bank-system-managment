@@ -5,13 +5,13 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include "bank.h"
+#include "Bank.h"
 #include "CliInput.h"
 
-class account : public bank
+class Account : public Bank
 {
 public:
-    account(const InputInterface *input) : input(input)
+    Account(const InputInterface *input) : input(input)
     {}
 
     void create_acc();

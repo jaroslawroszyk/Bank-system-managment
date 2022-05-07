@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+//rename file and enum class add to namespace
 enum class SystemBank
 {
     s_newaccount = 1,
