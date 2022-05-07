@@ -1,11 +1,11 @@
 #include "../include/functiontobank.h"
 #include "../include/account.h"
-#include "bank.h"
-#include "CliInput.h"
+#include "../include/bank.h"
+#include "../include/CliInput.h"
 
 #define FNAME "data.txt"
 
-#include "FileStorage.h"
+#include "../include/FileStorage.h"
 
 void Functionality::writeAccount()
 {
