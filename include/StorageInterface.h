@@ -2,12 +2,12 @@
 
 #include <vector>
 
-class account;
+class Account;
 class StorageInterface
 {
 public:
     virtual ~StorageInterface() = default;
-    virtual void writeAccount(const account &acc) = 0;
-    virtual std::vector <account> readAllAccounts() = 0;
+    virtual void writeAccount(const Account &acc) = 0;
+    virtual std::vector <Account> readAllAccounts() = 0;
 private:
 };

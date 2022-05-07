@@ -1,7 +1,7 @@
 #pragma once
 
 #include <algorithm>
-#include "inputInterface.h"
+#include "InputInterface.h"
 
 class CliInput : public InputInterface
 {
