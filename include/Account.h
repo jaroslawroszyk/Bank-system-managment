@@ -11,14 +11,14 @@
 class Account : public Bank
 {
 public:
-    Account(const InputInterface *input) : input(input)
+    explicit Account(const InputInterface *input) : input(input)
     {}
 
-    void create_acc();
+    void create_acc() override;
 
-    void showacc() const;
+    void showacc() const override;
 
-    void modify();
+    void modify() override;
 
     void deposit(int deposit);
 
@@ -26,21 +26,21 @@ public:
 
     void raport() const;
 
-    int returnacnumber() const;
+    [[nodiscard]] int returnacnumber() const;
 
-    int returndeposit() const;
+    [[nodiscard]] int returndeposit() const;
 
-    char returntype() const;
+    [[nodiscard]] char returntype() const;
 
-    int getMAccnumber() const;
+    [[nodiscard]] int getMAccnumber() const;
 
-    const std::string &getMName() const;
+    [[nodiscard]] const std::string &getMName() const;
 
-    const std::string &getMSurname() const;
+    [[nodiscard]] const std::string &getMSurname() const;
 
-    int getMDeposit() const;
+    [[nodiscard]] int getMDeposit() const;
 
-    char getMType() const;
+    [[nodiscard]] char getMType() const;
 
     void setMAccnumber(int mAccnumber);
 

@@ -1,9 +1,10 @@
 #include "../include/FileStorage.h"
 #include "../include/Account.h"
+
 void FileStorage::writeAccount(const Account &acc)
 {
     std::ofstream writeAcc;
-    writeAcc.open(FileName, std::ios::app);
+    writeAcc.open(FileName , std::ios::app);
     writeAcc << "#Surname: " << acc.getMSurname();
     writeAcc << "#Name: " << acc.getMName();
     writeAcc << "#Acc Number: " << acc.getMAccnumber();
@@ -16,8 +17,8 @@ std::vector<Account> FileStorage::readAllAccounts()
 {
     std::vector<Account> accountss;
     std::ifstream inputFile;
-    inputFile.open(FileName, std::ios::app);
-    for (std::string line; getline(inputFile, line);)
+    inputFile.open(FileName , std::ios::app);
+    for (std::string line; getline(inputFile , line);)
     {
         size_t lastPos = 0;
         //#Surname: sada#Name: asd#Acc Number: 1#Deposit: 2131321#Type P
@@ -26,22 +27,22 @@ std::vector<Account> FileStorage::readAllAccounts()
         Account ac(nullptr);
 
         std::string surname;
-        getStringData(line, lastPos, surname);
+        getStringData(line , lastPos , surname);
         ac.setMSurname(surname);
 
         std::string name;
-        getStringData(line, lastPos, name);
+        getStringData(line , lastPos , name);
         ac.setMName(name);
 
         int acoNumber;
-        getIntData(line, lastPos, acoNumber);
+        getIntData(line , lastPos , acoNumber);
         ac.setMAccnumber(acoNumber);
 
         int deposit;
-        getIntData(line, lastPos, deposit);
+        getIntData(line , lastPos , deposit);
         ac.setMDeposit(deposit);
 
-        lastPos = line.find(':', lastPos + 1);
+        lastPos = line.find(':' , lastPos + 1);
         ac.setMType(line[lastPos + 2]);
 
         accountss.push_back(ac);
@@ -49,16 +50,16 @@ std::vector<Account> FileStorage::readAllAccounts()
     return accountss;
 }
 
-void FileStorage::getStringData(const std::string &line, size_t &lastPos, std::string &data)
+void FileStorage::getStringData(const std::string &line , size_t &lastPos , std::string &data)
 {
-    lastPos = line.find(':', lastPos + 1);
-    data = (line.substr(lastPos + 1, line.find('#', lastPos) - 1 - lastPos));
+    lastPos = line.find(':' , lastPos + 1);
+    data = (line.substr(lastPos + 1 , line.find('#' , lastPos) - 1 - lastPos));
 }
 
-void FileStorage::getIntData(const std::string &line, size_t &lastPos, int &data)
+void FileStorage::getIntData(const std::string &line , size_t &lastPos , int &data)
 {
-    lastPos = line.find(':', lastPos + 1);
-    data = std::stoi(line.substr(lastPos + 1, line.find('#', lastPos) - 1 - lastPos));
+    lastPos = line.find(':' , lastPos + 1);
+    data = std::stoi(line.substr(lastPos + 1 , line.find('#' , lastPos) - 1 - lastPos));
 }
 
 void FileStorage::writeAllAccount()
@@ -102,11 +103,11 @@ bool FileStorage::modifyAccount(Account &ac)
 
 bool FileStorage::deleteAccount(int accNumber)
 {
-    auto newEnd= std::remove_if(accounts.begin(), accounts.end(), [accNumber](const Account &acc)
+    auto newEnd = std::remove_if(accounts.begin() , accounts.end() , [accNumber](const Account &acc)
     {
         return accNumber == acc.getMAccnumber();
     });
-    accounts.erase(newEnd, accounts.end());
+    accounts.erase(newEnd , accounts.end());
     writeAllAccount();
     return true;
 }

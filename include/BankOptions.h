@@ -15,7 +15,8 @@ namespace Operation
         s_modify ,
         s_exit = 8 ,
     };
+
 } // namespace Operation
 std::istream &operator>>(std::istream &in , Operation::BankOptions &enter);
-//Operation::BankOptions
+
 void menu();

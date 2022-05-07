@@ -1,11 +1,7 @@
 #include "../include/Functiontobank.h"
-#include "../include/Account.h"
-#include "../include/Bank.h"
-#include "../include/CliInput.h"
+#include "../include/FileStorage.h"
 
 #define FNAME "data.txt"
-
-#include "../include/FileStorage.h"
 
 void Functionality::writeAccount()
 {
@@ -72,7 +68,7 @@ void Functionality::displayAllAccount()
 
 }
 
-int Functionality::optionDeposit(int option, Account &aco, int amount) const
+int Functionality::optionDeposit(int option , Account &aco , int amount) const
 {
     if (option == 1)
     {
@@ -83,7 +79,7 @@ int Functionality::optionDeposit(int option, Account &aco, int amount) const
     return amount;
 }
 
-int Functionality::optionWithdraw(int option, Account &aco, int amount) const
+int Functionality::optionWithdraw(int option , Account &aco , int amount) const
 {
     if (option == 2)
     {
@@ -93,8 +89,7 @@ int Functionality::optionWithdraw(int option, Account &aco, int amount) const
         if ((balance < 500 && aco.returntype() == 'S') || (balance < 1000 && aco.returntype() == 'P'))
         {
             std::cout << "Insufficiency balance";
-        }
-        else
+        } else
         {
             aco.withdraw(amount);
         }
@@ -102,13 +97,13 @@ int Functionality::optionWithdraw(int option, Account &aco, int amount) const
     return amount;
 }
 
-void Functionality::depositOrWithdraw(int numberAccount, int option)
+void Functionality::depositOrWithdraw(int numberAccount , int option)
 {
     Account aco(nullptr);
     bool found = false;
     int amount = 0;
     std::fstream File;
-    File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
+    File.open(FNAME , std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
     {
         std::cout << "File couldn't be open!!";
@@ -116,16 +111,16 @@ void Functionality::depositOrWithdraw(int numberAccount, int option)
     }
     while (!File.eof() && found == false)
     {
-        File.read(reinterpret_cast<char *>(&aco), sizeof(Account));
+        File.read(reinterpret_cast<char *>(&aco) , sizeof(Account));
         if (aco.returnacnumber() == numberAccount)
         {
             aco.showacc();
-            amount = optionDeposit(option, aco, amount);
-            amount = optionWithdraw(option, aco, amount);
+            amount = optionDeposit(option , aco , amount);
+            amount = optionWithdraw(option , aco , amount);
 
             int pos = (-1) * static_cast<int>(sizeof(aco));
-            File.seekp(pos, std::ios::cur);
-            File.write(reinterpret_cast<char *>(&aco), sizeof(Account));
+            File.seekp(pos , std::ios::cur);
+            File.write(reinterpret_cast<char *>(&aco) , sizeof(Account));
             std::cout << "successs" << std::endl;
             found = true;
         }
