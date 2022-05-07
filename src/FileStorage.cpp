@@ -1,5 +1,5 @@
-#include "FileStorage.h"
-#include "account.h"
+#include "../include/FileStorage.h"
+#include "../include/account.h"
 void FileStorage::writeAccount(const account &acc)
 {
     std::ofstream writeAcc;

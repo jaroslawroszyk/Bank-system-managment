@@ -1,5 +1,5 @@
-#include "CliInput.h"
-#include "account.h"
+#include "../include/CliInput.h"
+#include "../include/account.h"
 
 int CliInput::getAccountNumber() const
 {
