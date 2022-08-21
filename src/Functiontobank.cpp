@@ -3,9 +3,9 @@
 
 #define FNAME "data.txt"
 
-void Functionality::writeAccount()
+void FunctionalityForAccount::writeAccount()
 {
-    const InputInterface *input = new CliInput;
+    const InputInterface *input = new ClInput;
     Account aco(input);
     aco.create_acc();
 
@@ -15,8 +15,7 @@ void Functionality::writeAccount()
     delete input;
 }
 
-
-void Functionality::displayDetails(int numberAccount)
+void FunctionalityForAccount::displayDetails(int numberAccount)
 {
     FileStorage storage;
     Account aco = storage.FindAccount(numberAccount);
@@ -30,7 +29,7 @@ void Functionality::displayDetails(int numberAccount)
     std::cout << "Account doesn't exist" << std::endl;
 }
 
-void Functionality::modifyAccount(int numberAccount)
+void FunctionalityForAccount::modifyAccount(int numberAccount)
 {
     FileStorage storage;
     Account aco = storage.FindAccount(numberAccount);
@@ -41,7 +40,7 @@ void Functionality::modifyAccount(int numberAccount)
     storage.modifyAccount(aco);
 }
 
-void Functionality::deleteAccount(int numberAccount)
+void FunctionalityForAccount::deleteAccount(int numberAccount)
 {
     FileStorage storage;
     storage.deleteAccount(numberAccount);
@@ -50,7 +49,7 @@ void Functionality::deleteAccount(int numberAccount)
 
 }
 
-void Functionality::generateRaport() const
+void FunctionalityForAccount::generateRaport() const
 {
     FileStorage storage;
     auto accounts = storage.readAllAccounts();
@@ -60,7 +59,7 @@ void Functionality::generateRaport() const
     }
 }
 
-void Functionality::displayAllAccount()
+void FunctionalityForAccount::displayAllAccount()
 {
     std::cout << "\tACCOUNT list" << std::endl;
     std::cout << "No    Surname     Name     Type   Balance" << std::endl;
@@ -68,7 +67,7 @@ void Functionality::displayAllAccount()
 
 }
 
-int Functionality::optionDeposit(int option , Account &aco , int amount) const
+int FunctionalityForAccount::optionDeposit(int option , Account &aco , int amount) const
 {
     if (option == 1)
     {
@@ -79,7 +78,7 @@ int Functionality::optionDeposit(int option , Account &aco , int amount) const
     return amount;
 }
 
-int Functionality::optionWithdraw(int option , Account &aco , int amount) const
+int FunctionalityForAccount::optionWithdraw(int option , Account &aco , int amount) const
 {
     if (option == 2)
     {
@@ -97,7 +96,7 @@ int Functionality::optionWithdraw(int option , Account &aco , int amount) const
     return amount;
 }
 
-void Functionality::depositOrWithdraw(int numberAccount , int option)
+void FunctionalityForAccount::depositOrWithdraw(int numberAccount , int option)
 {
     Account aco(nullptr);
     bool found = false;
@@ -132,12 +131,7 @@ void Functionality::depositOrWithdraw(int numberAccount , int option)
     }
 }
 
-void Functionality::enterAccNo()
+void FunctionalityForAccount::enterAccNo()
 {
     std::cout << "Enter Account number: ";
-}
-
-void Functionality::cleaningScreen()
-{
-    std::cout << "\033[2J\033[1;1H";
 }

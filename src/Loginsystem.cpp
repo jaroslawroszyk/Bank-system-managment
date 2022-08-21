@@ -1,10 +1,10 @@
-#include "../include/Loginsystem.h"
+#include "../include/LoginSystem.h"
 #include "../include/BankOptions.h"
 #include <thread>
 #include <chrono>
 #define WORKERSFILE "workers.txt"
 
-bool Login::regstr()
+auto Login::regstr() -> bool
 {
     std::string login, password, l, p;
     std::cout << "Enter Login: ";
@@ -18,40 +18,28 @@ bool Login::regstr()
     return true;
 }
 
-std::string Login::getLogin()
+auto Login::setLogin() -> std::string
 {
     std::string login;
     std::cout << "Enter login: ";
     std::cin >> login;
-//    setMLogin(login);
     return login;
 }
 
-std::string Login::getPassword()
+auto Login::setPassword() -> std::string
 {
     std::string password;
     std::cout << "Enter password: ";
     std::cin >> password;
-//    setMPassword(password);
     return password;
 }
 
-void Login::setMLogin(const std::string &mLogin)
-{
-    m_login = mLogin;
-}
-
-void Login::setMPassword(const std::string &mPassword)
-{
-    m_password = mPassword;
-}
-
 //repair register
-bool Login::Islogin()
+auto Login::Islogin() -> bool
 {
     std::string lo, po;
-    m_login = getLogin();
-    m_password = getPassword();
+    m_login = setLogin();
+    m_password = setPassword();
 
     std::ifstream inp(WORKERSFILE);
     while (inp >> lo >> po)
@@ -68,34 +56,33 @@ bool Login::Islogin()
     return false;
 }
 
-std::istream &operator>>(std::istream &in, LoginSystem &entry)
+std::istream &operator>>(std::istream &in, loginInformation &entry)
 {
     int int_entry;
-    entry = (in >> int_entry) ? static_cast<LoginSystem>(int_entry) : LoginSystem::wrong;
+    entry = (in >> int_entry) ? static_cast<loginInformation>(int_entry) : loginInformation::wrong;
     return in;
 }
 
 void Login::menuLogin()
 {
-    LoginSystem entr;
+    loginInformation loginOption;
     do
     {
         std::cout << "[1] Register\n";
         std::cout << "[2] Login\n";
-        std::cin >> entr;
+        std::cin >> loginOption;
 
-        switch (entr)
+        switch (loginOption)
         {
-            case LoginSystem::regi:
+            case loginInformation::registration:
             {
                 std::cout << "Regis\n";
                 regstr();
                 //isLogin();
                 break;
             }
-            case LoginSystem::logi:
+            case loginInformation::login:
             {
-//            std::system("clear");
                 bool is = Islogin();
                 if (!is)
                 {
@@ -103,7 +90,7 @@ void Login::menuLogin()
                 }
                 else
                 {
-                    Operation::menu();
+                    menu();
                 }
                 break;
             }
@@ -113,6 +100,6 @@ void Login::menuLogin()
                 break;
             }
         }
-    } while (entr == LoginSystem::wrong);
+    } while (loginOption == loginInformation::wrong);
 }
 

@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <iostream>
 
-class Functionality
+class FunctionalityForAccount
 {
 //extract some method to new class ?
 public:
@@ -24,8 +24,7 @@ public:
 
     static void enterAccNo();
 
-    void cleaningScreen();
-
+//    void cleaningScreen();
 
     void generateRaport() const;
 
