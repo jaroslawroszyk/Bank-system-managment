@@ -11,5 +11,10 @@ namespace Options
         login ,
     };
 
+    void cleaningScreen()
+    {
+        std::cout << "\033[2J\033[1;1H";
+    }
+
 } // namespace Options
 std::istream &operator>>(std::istream &in , Options::Login &entry);

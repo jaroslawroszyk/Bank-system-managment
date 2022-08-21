@@ -1,6 +1,6 @@
 #include "../include/CliInput.h"
 
-int CliInput::getAccountNumber() const
+auto ClInput::getAccountNumber() const -> int
 {
     int accountNumber;
     std::cout << "Enter Account number: ";
@@ -9,7 +9,7 @@ int CliInput::getAccountNumber() const
     return accountNumber;
 }
 
-std::string CliInput::getSurname() const
+auto ClInput::getSurname() const -> std::string
 {
     std::string surname;
     std::cout << "Enter surname of the Account holder: ";
@@ -22,7 +22,7 @@ std::string CliInput::getSurname() const
     return surname;
 }
 
-std::string CliInput::getName() const
+auto ClInput::getName() const -> std::string
 {
     std::string name;
     std::cout << "Enter name of the Account holder: ";
@@ -35,7 +35,7 @@ std::string CliInput::getName() const
     return name;
 }
 
-char CliInput::getAccountType() const
+auto ClInput::getAccountType() const -> char
 {
     char type;
     std::cout << "Enter type Account: (S-standard/P-Premium) ";
@@ -49,7 +49,7 @@ char CliInput::getAccountType() const
     return type;
 }
 
-int CliInput::getDepositAmount() const
+auto ClInput::getDepositAmount() const -> int
 {
     int deposit;
     std::cout << "enter the amount of the first payment(not less than 500) \n";

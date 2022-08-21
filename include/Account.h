@@ -5,10 +5,10 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include "Bank.h"
+#include "BankOperation.h"
 #include "CliInput.h"
 
-class Account : public Bank
+class Account : public BankOperation
 {
 public:
     explicit Account(const InputInterface *input) : input(input)

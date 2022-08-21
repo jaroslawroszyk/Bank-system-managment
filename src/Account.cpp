@@ -15,7 +15,7 @@ void Account::create_acc()
 
 }
 
-void Account::showacc() const
+auto Account::showacc() const -> void
 {
     std::cout << "\n";
     std::cout << "Account number: " << m_accnumber << "\n";
@@ -25,7 +25,7 @@ void Account::showacc() const
     std::cout << "Available balance: " << m_deposit << "\n";
 }
 
-void Account::modify()
+auto Account::modify() -> void //to powinno zwrocic zmodyfikowane konto
 {
     std::cout << "!Modify!\n";
     std::cout << "Account number: " << m_accnumber << "\n";
@@ -43,84 +43,84 @@ void Account::modify()
     std::cin >> m_deposit;
 }
 
-void Account::deposit(int deposit)
+auto Account::deposit(int deposit) -> void
 {
     m_deposit += deposit;
 }
 
-void Account::withdraw(int deposit)
+auto Account::withdraw(int deposit) -> void
 {
     m_deposit -= deposit;
 }
 
-void Account::raport() const
+auto Account::raport() const -> void
 {
     std::cout << m_accnumber << std::setw(4) << "" << m_surname << std::setw(8)
               << " " << m_name << std::setw(9) << std::setw(6) << "" << m_type
               << " " << std::setw(9) << m_deposit << std::endl;
 }
 
-int Account::returnacnumber() const
+auto Account::returnacnumber() const -> int
 {
     return m_accnumber;
 }
 
-int Account::returndeposit() const
+auto Account::returndeposit() const -> int
 {
     return m_deposit;
 }
 
-char Account::returntype() const
+auto Account::returntype() const -> char
 {
     return m_type;
 }
 
-int Account::getMAccnumber() const
+auto Account::getMAccnumber() const -> int
 {
     return m_accnumber;
 }
 
-const std::string &Account::getMName() const
+auto Account::getMName() const -> const std::string&
 {
     return m_name;
 }
 
-const std::string &Account::getMSurname() const
+auto Account::getMSurname() const -> const std::string&
 {
     return m_surname;
 }
 
-int Account::getMDeposit() const
+auto Account::getMDeposit() const -> int
 {
     return m_deposit;
 }
 
-char Account::getMType() const
+auto Account::getMType() const -> char
 {
     return m_type;
 }
 
-void Account::setMAccnumber(int mAccnumber)
+auto Account::setMAccnumber(int mAccnumber) -> void
 {
     m_accnumber = mAccnumber;
 }
 
-void Account::setMName(const std::string &mName)
+auto Account::setMName(const std::string &mName) -> void
 {
     m_name = mName;
 }
 
-void Account::setMSurname(const std::string &mSurname)
+auto Account::setMSurname(const std::string &mSurname) -> void
 {
     m_surname = mSurname;
 }
 
-void Account::setMDeposit(int mDeposit)
+auto Account::setMDeposit(int mDeposit) -> void
 {
     m_deposit = mDeposit;
 }
 
-void Account::setMType(char mType)
+auto Account::setMType(char mType) -> void
 {
     m_type = mType;
 }

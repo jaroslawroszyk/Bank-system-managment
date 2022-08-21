@@ -3,8 +3,8 @@
 
 void FileStorage::writeAccount(const Account &acc)
 {
-    std::ofstream writeAcc;
-    writeAcc.open(FileName , std::ios::app);
+    std::ofstream writeAcc(FileName,std::ios::app);
+//    writeAcc.open(FileName , std::ios::app);
     writeAcc << "#Surname: " << acc.getMSurname();
     writeAcc << "#Name: " << acc.getMName();
     writeAcc << "#Acc Number: " << acc.getMAccnumber();
@@ -16,14 +16,11 @@ void FileStorage::writeAccount(const Account &acc)
 std::vector<Account> FileStorage::readAllAccounts()
 {
     std::vector<Account> accountss;
-    std::ifstream inputFile;
-    inputFile.open(FileName , std::ios::app);
+    std::ifstream inputFile(FileName,std::ios::app);
+//    inputFile.open(FileName , std::ios::app);
     for (std::string line; getline(inputFile , line);)
     {
         size_t lastPos = 0;
-        //#Surname: sada#Name: asd#Acc Number: 1#Deposit: 2131321#Type P
-        //No    Surname     Name     Type   Balance
-        //1     sada#Name: a         asd#Acc Number: 1#Depo          2131321
         Account ac(nullptr);
 
         std::string surname;
@@ -103,11 +100,11 @@ bool FileStorage::modifyAccount(Account &ac)
 
 bool FileStorage::deleteAccount(int accNumber)
 {
-    auto newEnd = std::remove_if(accounts.begin() , accounts.end() , [accNumber](const Account &acc)
+    auto removeAccNumber = std::remove_if(accounts.begin() , accounts.end() , [accNumber](const Account &acc)
     {
         return accNumber == acc.getMAccnumber();
     });
-    accounts.erase(newEnd , accounts.end());
+    accounts.erase(removeAccNumber , accounts.end());
     writeAllAccount();
     return true;
 }

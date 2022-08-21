@@ -1,6 +1,6 @@
 #pragma once
 
-class Bank
+class BankOperation
 {
     virtual void create_acc() = 0;
 

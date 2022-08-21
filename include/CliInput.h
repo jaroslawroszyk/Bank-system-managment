@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "InputInterface.h"
 
-class CliInput : public InputInterface
+class ClInput : public InputInterface
 {
 public:
     int getAccountNumber() const override;
@@ -15,7 +15,7 @@ public:
     char getAccountType() const override;
 
     int getDepositAmount() const override;
-    ~CliInput() = default;
+    ~ClInput() = default;
 
 private:
     bool isNumber(const std::string &s) const
