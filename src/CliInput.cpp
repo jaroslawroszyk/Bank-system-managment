@@ -1,10 +1,9 @@
-#include "CliInput.h"
-#include "account.h"
+#include "../include/CliInput.h"
 
 int CliInput::getAccountNumber() const
 {
     int accountNumber;
-    std::cout << "Enter account number: ";
+    std::cout << "Enter Account number: ";
     std::cin >> accountNumber;
 
     return accountNumber;
@@ -13,7 +12,7 @@ int CliInput::getAccountNumber() const
 std::string CliInput::getSurname() const
 {
     std::string surname;
-    std::cout << "Enter surname of the account holder: ";
+    std::cout << "Enter surname of the Account holder: ";
     std::cin >> surname;
     while (isNumber(surname))
     {
@@ -26,7 +25,7 @@ std::string CliInput::getSurname() const
 std::string CliInput::getName() const
 {
     std::string name;
-    std::cout << "Enter name of the account holder: ";
+    std::cout << "Enter name of the Account holder: ";
     std::cin >> name;
     while (isNumber(name))
     {
@@ -39,7 +38,7 @@ std::string CliInput::getName() const
 char CliInput::getAccountType() const
 {
     char type;
-    std::cout << "Enter type account: (S-standard/P-Premium) ";
+    std::cout << "Enter type Account: (S-standard/P-Premium) ";
     std::cin >> type;
     type = toupper(type);
     while (type != 'S' && type != 's' && type != 'P' && type != 'p')

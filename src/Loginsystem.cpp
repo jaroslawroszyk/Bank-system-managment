@@ -1,7 +1,6 @@
-#include "../include/loginsystem.h"
-#include "systembank.h"
+#include "../include/Loginsystem.h"
+#include "../include/BankOptions.h"
 #include <thread>
-#include <cstdlib>
 #include <chrono>
 #define WORKERSFILE "workers.txt"
 
@@ -104,7 +103,7 @@ void Login::menuLogin()
                 }
                 else
                 {
-                    menu();
+                    Operation::menu();
                 }
                 break;
             }

@@ -1,16 +1,12 @@
-#include "../include/functiontobank.h"
-#include "../include/account.h"
-#include "bank.h"
-#include "CliInput.h"
+#include "../include/Functiontobank.h"
+#include "../include/FileStorage.h"
 
 #define FNAME "data.txt"
-
-#include "FileStorage.h"
 
 void Functionality::writeAccount()
 {
     const InputInterface *input = new CliInput;
-    account aco(input);
+    Account aco(input);
     aco.create_acc();
 
     FileStorage storage;
@@ -23,7 +19,7 @@ void Functionality::writeAccount()
 void Functionality::displayDetails(int numberAccount)
 {
     FileStorage storage;
-    account aco = storage.FindAccount(numberAccount);
+    Account aco = storage.FindAccount(numberAccount);
     std::cout << "Details" << std::endl;
 
     if (aco.getMAccnumber() != -1)
@@ -31,13 +27,13 @@ void Functionality::displayDetails(int numberAccount)
         aco.raport();
         return;
     }
-    std::cout << "account doesn't exist" << std::endl;
+    std::cout << "Account doesn't exist" << std::endl;
 }
 
 void Functionality::modifyAccount(int numberAccount)
 {
     FileStorage storage;
-    account aco = storage.FindAccount(numberAccount);
+    Account aco = storage.FindAccount(numberAccount);
     aco.showacc();
     std::cout << "MODIFY OLD DETAILS: " << std::endl;
     aco.modify();
@@ -72,7 +68,7 @@ void Functionality::displayAllAccount()
 
 }
 
-int Functionality::optionDeposit(int option, account &aco, int amount) const
+int Functionality::optionDeposit(int option , Account &aco , int amount) const
 {
     if (option == 1)
     {
@@ -83,7 +79,7 @@ int Functionality::optionDeposit(int option, account &aco, int amount) const
     return amount;
 }
 
-int Functionality::optionWithdraw(int option, account &aco, int amount) const
+int Functionality::optionWithdraw(int option , Account &aco , int amount) const
 {
     if (option == 2)
     {
@@ -93,8 +89,7 @@ int Functionality::optionWithdraw(int option, account &aco, int amount) const
         if ((balance < 500 && aco.returntype() == 'S') || (balance < 1000 && aco.returntype() == 'P'))
         {
             std::cout << "Insufficiency balance";
-        }
-        else
+        } else
         {
             aco.withdraw(amount);
         }
@@ -102,13 +97,13 @@ int Functionality::optionWithdraw(int option, account &aco, int amount) const
     return amount;
 }
 
-void Functionality::depositOrWithdraw(int numberAccount, int option)
+void Functionality::depositOrWithdraw(int numberAccount , int option)
 {
-    account aco(nullptr);
+    Account aco(nullptr);
     bool found = false;
     int amount = 0;
     std::fstream File;
-    File.open(FNAME, std::ios::binary | std::ios::in | std::ios::out);
+    File.open(FNAME , std::ios::binary | std::ios::in | std::ios::out);
     if (!File)
     {
         std::cout << "File couldn't be open!!";
@@ -116,16 +111,16 @@ void Functionality::depositOrWithdraw(int numberAccount, int option)
     }
     while (!File.eof() && found == false)
     {
-        File.read(reinterpret_cast<char *>(&aco), sizeof(account));
+        File.read(reinterpret_cast<char *>(&aco) , sizeof(Account));
         if (aco.returnacnumber() == numberAccount)
         {
             aco.showacc();
-            amount = optionDeposit(option, aco, amount);
-            amount = optionWithdraw(option, aco, amount);
+            amount = optionDeposit(option , aco , amount);
+            amount = optionWithdraw(option , aco , amount);
 
             int pos = (-1) * static_cast<int>(sizeof(aco));
-            File.seekp(pos, std::ios::cur);
-            File.write(reinterpret_cast<char *>(&aco), sizeof(account));
+            File.seekp(pos , std::ios::cur);
+            File.write(reinterpret_cast<char *>(&aco) , sizeof(Account));
             std::cout << "successs" << std::endl;
             found = true;
         }
@@ -133,13 +128,13 @@ void Functionality::depositOrWithdraw(int numberAccount, int option)
     File.close();
     if (found == false)
     {
-        std::cout << "account doesn't exist" << std::endl;
+        std::cout << "Account doesn't exist" << std::endl;
     }
 }
 
 void Functionality::enterAccNo()
 {
-    std::cout << "Enter account number: ";
+    std::cout << "Enter Account number: ";
 }
 
 void Functionality::cleaningScreen()

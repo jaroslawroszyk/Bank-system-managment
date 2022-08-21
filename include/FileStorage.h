@@ -6,7 +6,7 @@
 #include <string>
 #include <algorithm>
 #define FileName "data.txt"
-class account;
+class Account;
 
 class FileStorage : public StorageInterface
 {
@@ -16,20 +16,20 @@ public:
         accounts = readAllAccounts();
     }
 
-    void writeAccount(const account &acc) override;
+    void writeAccount(const Account &acc) override;
 
 
-    std::vector<account> readAllAccounts() override;
-    account FindAccount(int accountNumber) const;
+    std::vector<Account> readAllAccounts() override;
+    Account FindAccount(int accountNumber) const;
 
-    bool modifyAccount(account& ac);
+    bool modifyAccount(Account& ac);
 
     bool deleteAccount(int accNumber);
     ~FileStorage()
     {
     }
 private:
-    std::vector<account> accounts;
+    std::vector<Account> accounts;
     void writeAllAccount();
 
     static void getStringData(const std::string &line, size_t &lastPos, std::string &data) ;

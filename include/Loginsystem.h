@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-
+//rename enum class and extend to extetrnal file in namespace
 enum class LoginSystem
 {
     wrong = 0,

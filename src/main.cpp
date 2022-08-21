@@ -1,5 +1,5 @@
-#include "../include/account.h"
-#include "../include/loginsystem.h"
+#include "../include/Account.h"
+#include "../include/Loginsystem.h"
 
 int main()
 {

@@ -1,9 +1,9 @@
-#include "../include/account.h"
+#include "../include/Account.h"
 #define FNAME "data.txt"
 
 //creating Interfaces and replacing void functions to returning something
 //REFACTOR THIS PIECE OF SHIT
-void account::create_acc()
+void Account::create_acc()
 {
     std::ifstream checkid;
     checkid.open(FNAME, std::ios::binary | std::ios::app);
@@ -15,7 +15,7 @@ void account::create_acc()
 
 }
 
-void account::showacc() const
+void Account::showacc() const
 {
     std::cout << "\n";
     std::cout << "Account number: " << m_accnumber << "\n";
@@ -25,14 +25,14 @@ void account::showacc() const
     std::cout << "Available balance: " << m_deposit << "\n";
 }
 
-void account::modify()
+void Account::modify()
 {
     std::cout << "!Modify!\n";
     std::cout << "Account number: " << m_accnumber << "\n";
-    std::cout << "Modify surname of the account holder: ";
+    std::cout << "Modify surname of the Account holder: ";
     std::cin.ignore();
     std::cin >> m_surname;
-    std::cout << "Modify name of the account holder: ";
+    std::cout << "Modify name of the Account holder: ";
     std::cin.ignore();
     std::cin >> m_name;
 
@@ -43,84 +43,84 @@ void account::modify()
     std::cin >> m_deposit;
 }
 
-void account::deposit(int deposit)
+void Account::deposit(int deposit)
 {
     m_deposit += deposit;
 }
 
-void account::withdraw(int deposit)
+void Account::withdraw(int deposit)
 {
     m_deposit -= deposit;
 }
 
-void account::raport() const
+void Account::raport() const
 {
     std::cout << m_accnumber << std::setw(4) << "" << m_surname << std::setw(8)
               << " " << m_name << std::setw(9) << std::setw(6) << "" << m_type
               << " " << std::setw(9) << m_deposit << std::endl;
 }
 
-int account::returnacnumber() const
+int Account::returnacnumber() const
 {
     return m_accnumber;
 }
 
-int account::returndeposit() const
+int Account::returndeposit() const
 {
     return m_deposit;
 }
 
-char account::returntype() const
+char Account::returntype() const
 {
     return m_type;
 }
 
-int account::getMAccnumber() const
+int Account::getMAccnumber() const
 {
     return m_accnumber;
 }
 
-const std::string &account::getMName() const
+const std::string &Account::getMName() const
 {
     return m_name;
 }
 
-const std::string &account::getMSurname() const
+const std::string &Account::getMSurname() const
 {
     return m_surname;
 }
 
-int account::getMDeposit() const
+int Account::getMDeposit() const
 {
     return m_deposit;
 }
 
-char account::getMType() const
+char Account::getMType() const
 {
     return m_type;
 }
 
-void account::setMAccnumber(int mAccnumber)
+void Account::setMAccnumber(int mAccnumber)
 {
     m_accnumber = mAccnumber;
 }
 
-void account::setMName(const std::string &mName)
+void Account::setMName(const std::string &mName)
 {
     m_name = mName;
 }
 
-void account::setMSurname(const std::string &mSurname)
+void Account::setMSurname(const std::string &mSurname)
 {
     m_surname = mSurname;
 }
 
-void account::setMDeposit(int mDeposit)
+void Account::setMDeposit(int mDeposit)
 {
     m_deposit = mDeposit;
 }
 
-void account::setMType(char mType)
+void Account::setMType(char mType)
 {
     m_type = mType;
 }
