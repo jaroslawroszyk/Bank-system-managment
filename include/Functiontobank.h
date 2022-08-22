@@ -12,23 +12,23 @@ class FunctionalityForAccount
 public:
     static void writeAccount();
 
-    void displayDetails(int numberAccount);
+    auto displayDetails(int numberAccount)->void;
 
-    void modifyAccount(int numberAccount);
+    auto modifyAccount(int numberAccount)-> void;
 
-    void deleteAccount(int numberAccount);
+    auto deleteAccount(int numberAccount) -> void;
 
-    void displayAllAccount();
+    auto displayAllAccount() -> void;
 
-    void depositOrWithdraw(int numberAccount, int option);
+    auto depositOrWithdraw(int numberAccount, int option) -> void;
 
     static void enterAccNo();
 
 //    void cleaningScreen();
 
-    void generateRaport() const;
+    auto generateRaport() const -> void;
 
-    int optionDeposit(int option, Account &aco, int amount) const;
+    auto optionDeposit(int option, Account &aco, int amount) const -> int;
 
-    int optionWithdraw(int option, Account &aco, int amount) const;
+    auto optionWithdraw(int option, Account &aco, int amount) const -> int;
 };

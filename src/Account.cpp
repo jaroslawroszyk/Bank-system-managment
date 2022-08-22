@@ -3,7 +3,7 @@
 
 //creating Interfaces and replacing void functions to returning something
 //REFACTOR THIS PIECE OF SHIT
-void Account::create_acc()
+auto Account::create_acc() -> void
 {
     std::ifstream checkid;
     checkid.open(FNAME, std::ios::binary | std::ios::app);
@@ -12,7 +12,6 @@ void Account::create_acc()
     m_name = input->getName();
     m_type = input ->getAccountType();
     m_deposit = input->getDepositAmount();
-
 }
 
 auto Account::showacc() const -> void
