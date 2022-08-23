@@ -7,8 +7,9 @@
 #include <iostream>
 #include "BankOperation.h"
 #include "CliInput.h"
+#include "Person.h"
 
-class Account : public BankOperation
+class Account : public BankOperation , public Person
 {
 public:
     explicit Account(const InputInterface *input) : input(input)
@@ -34,19 +35,11 @@ public:
 
     [[nodiscard]] int getMAccnumber() const;
 
-    [[nodiscard]] const std::string &getMName() const;
-
-    [[nodiscard]] const std::string &getMSurname() const;
-
     [[nodiscard]] int getMDeposit() const;
 
     [[nodiscard]] char getMType() const;
 
     void setMAccnumber(int mAccnumber);
-
-    void setMName(const std::string &mName);
-
-    void setMSurname(const std::string &mSurname);
 
     void setMDeposit(int mDeposit);
 
@@ -55,8 +48,6 @@ public:
 private:
     const InputInterface *input;
     int m_accnumber = -1;
-    std::string m_name;
-    std::string m_surname;
     int m_deposit = 0;
     char m_type = 'S';
 };

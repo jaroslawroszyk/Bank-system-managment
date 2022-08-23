@@ -77,16 +77,6 @@ auto Account::getMAccnumber() const -> int
     return m_accnumber;
 }
 
-auto Account::getMName() const -> const std::string&
-{
-    return m_name;
-}
-
-auto Account::getMSurname() const -> const std::string&
-{
-    return m_surname;
-}
-
 auto Account::getMDeposit() const -> int
 {
     return m_deposit;
@@ -100,16 +90,6 @@ auto Account::getMType() const -> char
 auto Account::setMAccnumber(int mAccnumber) -> void
 {
     m_accnumber = mAccnumber;
-}
-
-auto Account::setMName(const std::string &mName) -> void
-{
-    m_name = mName;
-}
-
-auto Account::setMSurname(const std::string &mSurname) -> void
-{
-    m_surname = mSurname;
 }
 
 auto Account::setMDeposit(int mDeposit) -> void

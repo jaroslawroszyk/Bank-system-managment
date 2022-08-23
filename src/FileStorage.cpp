@@ -1,10 +1,10 @@
 #include "../include/FileStorage.h"
 #include "../include/Account.h"
+#include "../include/Person.h"
 
 auto FileStorage::writeAccount(const Account &acc) -> void
 {
     std::ofstream writeAcc(FileName,std::ios::app);
-//    writeAcc.open(FileName , std::ios::app);
     writeAcc << "#Surname: " << acc.getMSurname();
     writeAcc << "#Name: " << acc.getMName();
     writeAcc << "#Acc Number: " << acc.getMAccnumber();
@@ -17,7 +17,6 @@ auto FileStorage::readAllAccounts() -> std::vector<Account>
 {
     std::vector<Account> accountss;
     std::ifstream inputFile(FileName,std::ios::app);
-//    inputFile.open(FileName , std::ios::app);
     for (std::string line; getline(inputFile , line);)
     {
         size_t lastPos = 0;
