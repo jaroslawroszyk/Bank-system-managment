@@ -3,6 +3,8 @@ It is a simple bank account management application that uses classes and functio
 As I develop my skills, I will want to put this application graphically together with the database. 
 In the future, I would like to link it to the database and create TDD
 
+[Graphically with database in QT](https://github.com/jaroslawroszyk/BankManagment-Qt)
+
 ## Build
  Build requires cmake 3.17+
 ```
@@ -12,8 +14,14 @@ cmake ..
 make 
 ```
 
-## Execute
+## Execute Program
 ```
-cd /bin
-./BankSystem
+cd build && cd src
+./BankSystemManagment_run
+```
+
+## How to run tests
+```
+cd build && cd uts
+./runUnitTests
 ```
