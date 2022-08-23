@@ -1,5 +1,18 @@
 #include "../include/CliInput.h"
 
+namespace
+{
+    auto isStandardAccount(char typeOfAccount) -> bool
+    {
+        return typeOfAccount == 's' or typeOfAccount == 'S';
+    }
+
+    auto isPremiumAccount(char typeOfAccount) -> bool
+    {
+        return typeOfAccount == 'p' or typeOfAccount == 'P';
+    }
+}
+
 auto ClInput::getAccountNumber() const -> int
 {
     int accountNumber;
@@ -37,22 +50,21 @@ auto ClInput::getName() const -> std::string
 
 auto ClInput::getAccountType() const -> char
 {
-    char type;
+    char typeOfAccount;
     std::cout << "Enter type Account: (S-standard/P-Premium) ";
-    std::cin >> type;
-    type = toupper(type);
-    while (type != 'S' && type != 's' && type != 'P' && type != 'p')
+    std::cin >> typeOfAccount;
+    while (!isStandardAccount(typeOfAccount) and !isPremiumAccount(typeOfAccount))
     {
         std::cout << "Invalid data! \n Please enter again: ";
-        std::cin >> type;
+        std::cin >> typeOfAccount;
     }
-    return type;
+    return typeOfAccount;
 }
 
 auto ClInput::getDepositAmount() const -> int
 {
-    int deposit;
-    std::cout << "enter the amount of the first payment(not less than 500) \n";
+    int deposit = 0;
+    std::cout << "Enter the amount of the first payment(not less than 500) \n";
     std::cin >> deposit;
 
     while (deposit < 500)

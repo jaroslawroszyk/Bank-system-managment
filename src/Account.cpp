@@ -1,8 +1,6 @@
 #include "../include/Account.h"
 #define FNAME "data.txt"
 
-//creating Interfaces and replacing void functions to returning something
-//REFACTOR THIS PIECE OF SHIT
 auto Account::create_acc() -> void
 {
     std::ifstream checkid;
