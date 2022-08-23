@@ -63,7 +63,7 @@ std::istream &operator>>(std::istream &in, loginInformation &entry)
     return in;
 }
 
-void Login::menuLogin()
+auto Login::menuLogin() -> void
 {
     loginInformation loginOption;
     do

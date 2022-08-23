@@ -10,7 +10,7 @@ std::istream &operator>>(std::istream &in , Operation::BankOptions &enter)
     return in;
 }
 
-void showOptionInMenu()
+auto showOptionInMenu() -> void
 {
     std::cout << "[1] New Account" << std::endl;
     std::cout << "[2] Deposit amount" << std::endl;
@@ -23,7 +23,7 @@ void showOptionInMenu()
     std::cout << "Select options 1-8: ";
 }
 
-void menu()
+auto menu() -> void
 {
     int n;
     Operation::BankOptions enter;

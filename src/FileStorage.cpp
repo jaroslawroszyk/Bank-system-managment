@@ -1,7 +1,7 @@
 #include "../include/FileStorage.h"
 #include "../include/Account.h"
 
-void FileStorage::writeAccount(const Account &acc)
+auto FileStorage::writeAccount(const Account &acc) -> void
 {
     std::ofstream writeAcc(FileName,std::ios::app);
 //    writeAcc.open(FileName , std::ios::app);
@@ -13,7 +13,7 @@ void FileStorage::writeAccount(const Account &acc)
     writeAcc.close();
 }
 
-std::vector<Account> FileStorage::readAllAccounts()
+auto FileStorage::readAllAccounts() -> std::vector<Account>
 {
     std::vector<Account> accountss;
     std::ifstream inputFile(FileName,std::ios::app);
@@ -47,19 +47,19 @@ std::vector<Account> FileStorage::readAllAccounts()
     return accountss;
 }
 
-void FileStorage::getStringData(const std::string &line , size_t &lastPos , std::string &data)
+auto FileStorage::getStringData(const std::string &line , size_t &lastPos , std::string &data) -> void
 {
     lastPos = line.find(':' , lastPos + 1);
     data = (line.substr(lastPos + 1 , line.find('#' , lastPos) - 1 - lastPos));
 }
 
-void FileStorage::getIntData(const std::string &line , size_t &lastPos , int &data)
+auto FileStorage::getIntData(const std::string &line , size_t &lastPos , int &data) -> void
 {
     lastPos = line.find(':' , lastPos + 1);
     data = std::stoi(line.substr(lastPos + 1 , line.find('#' , lastPos) - 1 - lastPos));
 }
 
-void FileStorage::writeAllAccount()
+auto FileStorage::writeAllAccount() -> void
 {
     std::remove(FileName);
     for (const auto &account: accounts)
@@ -68,8 +68,9 @@ void FileStorage::writeAllAccount()
     }
 }
 
-Account FileStorage::FindAccount(int accountNumber) const
+auto FileStorage::FindAccount(int accountNumber) const -> Account
 {
+    //maybe use stl
     for (const auto &account: accounts)
     {
         if (accountNumber == account.getMAccnumber())
@@ -81,7 +82,7 @@ Account FileStorage::FindAccount(int accountNumber) const
     return ac;
 }
 
-bool FileStorage::modifyAccount(Account &ac)
+auto FileStorage::modifyAccount(Account &ac) -> bool
 {
     for (auto &find: accounts)
     {
@@ -98,8 +99,9 @@ bool FileStorage::modifyAccount(Account &ac)
     return false;
 }
 
-bool FileStorage::deleteAccount(int accNumber)
+auto FileStorage::deleteAccount(int accNumber) -> bool
 {
+    //maybe use stl?
     auto removeAccNumber = std::remove_if(accounts.begin() , accounts.end() , [accNumber](const Account &acc)
     {
         return accNumber == acc.getMAccnumber();

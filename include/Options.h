@@ -11,7 +11,7 @@ namespace Options
         login ,
     };
 
-    void cleaningScreen()
+    auto cleaningScreen() -> void
     {
         std::cout << "\033[2J\033[1;1H";
     }

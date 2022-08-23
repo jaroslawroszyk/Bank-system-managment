@@ -6,19 +6,19 @@
 class ClInput : public InputInterface
 {
 public:
-    int getAccountNumber() const override;
+    auto getAccountNumber() const -> int override;
 
-    std::string getSurname() const override;
+    auto getSurname() const -> std::string override;
 
-    std::string getName() const override;
+    auto getName() const -> std::string override;
 
-    char getAccountType() const override;
+     auto getAccountType() const -> char override;
 
-    int getDepositAmount() const override;
+    auto getDepositAmount() const -> int override;
     ~ClInput() = default;
 
 private:
-    bool isNumber(const std::string &s) const
+    auto isNumber(const std::string &s) const -> bool
     {
         return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
     }
